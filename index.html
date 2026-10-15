@@ -44,7 +44,7 @@
       overflow: hidden;
     }
 
-    /* Экран входа */
+    /* Авторизация */
     .auth-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(11, 37, 62, 0.88); backdrop-filter: blur(6px);
@@ -73,7 +73,7 @@
       background: none; border: none; cursor: pointer; font-size: 1.1rem; opacity: 0.6;
     }
 
-    /* Шапка */
+    /* Шапка сайта */
     .header {
       position: fixed; top: 0; left: 0; right: 0; height: 72px;
       background: #FFFFFF; border-bottom: 3px solid var(--brand-blue);
@@ -88,7 +88,7 @@
     .header-logo { display: flex; align-items: center; cursor: pointer; }
     .header-logo-img { height: 48px; max-width: 210px; object-fit: contain; display: block; }
 
-    /* Поиск */
+    /* Поиск в шапке */
     .header-search-container { display: flex; align-items: center; gap: 6px; position: relative; margin: 0 12px; }
     .header-search { width: 280px; position: relative; }
     .header-search input {
@@ -246,6 +246,14 @@
       margin: 16px 0 24px; box-shadow: 0 2px 8px rgba(252, 63, 29, 0.08); gap: 14px;
     }
 
+    /* Ссылки внутри текста */
+    .wiki-internal-link {
+      color: var(--brand-blue); background: var(--brand-light); padding: 3px 8px; border-radius: 6px;
+      text-decoration: none; font-weight: 700; border: 1px solid var(--brand-border); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px; margin: 0 2px; transition: all 0.15s;
+    }
+    .wiki-internal-link:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
+
     /* Блоки статьи */
     .page-block-wrapper { position: relative; margin-bottom: 20px; border-radius: 10px; }
     .page-block-tools {
@@ -295,7 +303,7 @@
     }
     .accordion-page-btn:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 
-    /* МОДУЛЬ ПРЕЗЕНТАЦИЙ (СЛАЙДЕР С ПЕРЕМОТКОЙ) */
+    /* Слайдер презентаций */
     .presentation-card {
       background: #FFFFFF; border: 1.5px solid var(--brand-border); border-radius: 12px;
       overflow: hidden; margin: 16px 0; box-shadow: 0 4px 14px rgba(11, 53, 88, 0.07);
@@ -315,7 +323,6 @@
       padding: 12px 18px; background: #F1F5F9; border-top: 1px solid #E2E8F0;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .presentation-counter { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
     .presentation-dots { display: flex; gap: 6px; }
     .pres-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; transition: all 0.2s; }
     .pres-dot.active { background: var(--brand-blue); width: 22px; border-radius: 4px; }
@@ -595,7 +602,7 @@
     </div>
   </div>
 
-  <!-- 4. Добавление пункта статьи (Текст, Чек-лист, Слайд-презентация, Выпадающая вкладка, Видео, Фото) -->
+  <!-- 4. Добавление пункта статьи -->
   <div class="modal-overlay" id="articleBlockModal">
     <div class="modal-window">
       <div class="modal-title" id="articleBlockModalTitle">Пункт регламента / Материал обучения</div>
@@ -737,6 +744,7 @@
         <div class="vm-tab" id="tabUsersBtn" onclick="switchVmTab('users')">Список пользователей</div>
       </div>
 
+      <!-- Вкладка 1: Матрица допуска по ролям -->
       <div id="vmRolesTabContent">
         <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">
           Нажмите на ячейку для переключения допуска (зелёный — разрешено, красный — запрещено).
@@ -754,6 +762,7 @@
         <table class="perm-grid-table" id="vmRolePermsTable"></table>
       </div>
 
+      <!-- Вкладка 2: Пользователи -->
       <div id="vmUsersTabContent" style="display:none;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <span style="font-size:0.85rem; color:var(--text-muted);">Зарегистрированные пользователи:</span>
@@ -771,7 +780,7 @@
     </div>
   </div>
 
-  <!-- Создание нового пользователя с АВТОМАТИЧЕСКИМ НАЗНАЧЕНИЕМ ОБУЧЕНИЯ И ТЕСТОВ -->
+  <!-- Создание нового пользователя -->
   <div class="modal-overlay" id="newUserModal" style="z-index: 2900;">
     <div class="modal-window" style="max-width: 520px;">
       <div class="modal-title">Новый сотрудник клиники</div>
@@ -791,7 +800,6 @@
         </select>
       </div>
 
-      <!-- Блок автоназначения обучения и тестов -->
       <div class="form-group" style="background:var(--brand-light); border:1.5px solid var(--brand-border); padding:12px; border-radius:8px;">
         <label style="color:var(--brand-deep); font-weight:800; font-size:0.82rem;">Автоматическое назначение при создании:</label>
         <div style="margin-top:6px;">
@@ -840,8 +848,8 @@
     const DEFAULT_LOGO_DATA_URL = `data:image/svg+xml;utf8,<svg viewBox="0 0 460 120" xmlns="http://www.w3.org/2000/svg"><path d="M46 8C48 3 53 1 58 4C63 7 60 14 62 18C65 19 69 19 72 22C77 26 81 33 76 39C72 44 65 44 63 46C60 48 60 52 61 55C62 58 64 61 62 65C60 70 56 74 53 78C50 82 46 87 40 90C35 93 28 95 23 94C18 93 14 91 10 88C5 84 2 79 1 74C-1 67 2 61 6 56C10 52 14 47 17 41C20 35 23 27 28 21C32 16 39 12 46 8Z" fill="%230088D4"/><path d="M74 21C77 15 81 12 85 16C89 20 86 27 88 32C92 34 97 38 98 43C100 48 98 54 98 59C97 64 99 69 102 73C106 79 112 85 116 91C119 96 118 102 113 105C108 108 101 107 96 104C91 101 87 97 84 93C82 89 80 84 79 79C78 74 76 69 75 64Z" fill="%230088D4"/><path d="M12 70C14 85 24 100 42 106C58 111 76 109 90 102C102 96 112 85 115 72C117 62 116 52 112 42C108 32 101 24 93 18C90 16 88 18 87 22C85 27 82 32 78 35C74 38 69 39 64 36C60 33 58 28 58 23C58 18 55 12 51 9C46 6 41 8 38 12C34 18 29 25 25 33C20 42 16 52 13 62Z" fill="%230088D4"/><path d="M45 42H71V59H88V85H71V102H45V85H28V59H45V42Z" fill="%23FFFFFF"/><text x="135" y="42" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-size="19" fill="%230088D4">ветеринарная  клиника</text><text x="135" y="86" font-family="'Inter', sans-serif" font-weight="800" font-size="44" fill="%230088D4" letter-spacing="3.5">НАДЕЖДА</text></svg>`;
 
     const DEFAULT_USERS = [
-      { id: "u_korotets", fullName: "korotets", email: "korotets@mail.ru", username: "korotets", password: "korotets", role: "operator", roleName: "Оператор колл-центра" },
       { id: "u_admin", fullName: "Анастасия Евгеньевна", email: "admin@nadezhda.vet", username: "admin", password: "admin123", role: "admin", roleName: "Управляющая клиникой" },
+      { id: "u_korotets", fullName: "korotets", email: "korotets@mail.ru", username: "korotets", password: "korotets", role: "operator", roleName: "Оператор колл-центра" },
       { id: "u_head", fullName: "Елена Валерьевна", email: "head@nadezhda.vet", username: "head_med", password: "1234", role: "head", roleName: "Заведующая отделением" }
     ];
 
@@ -874,7 +882,6 @@
       { id: "mod_laboratory", name: "Лаборатория" }
     ];
 
-    /* СТРАНИЦЫ БАЗЫ ЗНАНИЙ (С ПОДДЕРЖКОЙ СЛАЙД-ПРЕЗЕНТАЦИЙ И ВЫПАДАЮЩИХ ВКЛАДОК) */
     const DEFAULT_PAGES = [
       {
         id: "home",
@@ -945,12 +952,12 @@
       { id: "c_surgery", title: "Хирургия и оперблок", desc: "Предоперационный чек-лист, наркозный протокол, стерилизация.", icon: "🔪", pageId: "page_surgery", color: "linear-gradient(135deg, #0F766E, #14B8A6)" }
     ];
 
-    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v100')) || DEFAULT_PAGES;
-    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v100')) || DEFAULT_DASH_CARDS;
-    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v100')) || DEFAULT_USERS;
-    let testsList = JSON.parse(localStorage.getItem('nadezhda_tests_v100')) || DEFAULT_TESTS;
-    let testResults = JSON.parse(localStorage.getItem('nadezhda_test_results_v100')) || [];
-    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v100')) || {};
+    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v110')) || DEFAULT_PAGES;
+    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v110')) || DEFAULT_DASH_CARDS;
+    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v110')) || DEFAULT_USERS;
+    let testsList = JSON.parse(localStorage.getItem('nadezhda_tests_v110')) || DEFAULT_TESTS;
+    let testResults = JSON.parse(localStorage.getItem('nadezhda_test_results_v110')) || [];
+    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v110')) || {};
     let customLogo = localStorage.getItem('nadezhda_uploaded_logo') || DEFAULT_LOGO_DATA_URL;
 
     let currentUser = JSON.parse(sessionStorage.getItem('nadezhda_active_user')) || null;
@@ -959,19 +966,16 @@
     let builderQuestions = [];
     let builderSlides = [];
 
-    // Таймер тестирования
     let activeTestTimerInterval = null;
     let activeTestSecondsLeft = 0;
     let activeTestTotalSeconds = 0;
-
-    // Состояния слайдеров презентаций
     let presentationStates = {};
 
     /* ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ */
     function syncToCloud(key, data) {
-      localStorage.setItem('nadezhda_' + key + '_v100', JSON.stringify(data));
+      localStorage.setItem('nadezhda_' + key + '_v110', JSON.stringify(data));
       if (firebaseDb && isCloudOnline) {
-        firebaseDb.ref(key + '_v100').set(data).catch(e => console.error("Firebase write error:", e));
+        firebaseDb.ref(key + '_v110').set(data).catch(e => console.error("Firebase write error:", e));
       }
     }
 
@@ -982,12 +986,19 @@
         return;
       }
 
-      firebaseDb.ref('pages_v100').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
-      firebaseDb.ref('cards_v100').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
-      firebaseDb.ref('users_v100').on('value', s => { if (s.val()) { usersList = s.val(); updateHeaderPendingTests(); } });
-      firebaseDb.ref('tests_v100').on('value', s => { if (s.val()) { testsList = s.val(); updateHeaderPendingTests(); } });
-      firebaseDb.ref('results_v100').on('value', s => { if (s.val()) { testResults = s.val(); updateHeaderPendingTests(); } });
-      firebaseDb.ref('perms_v100').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
+      firebaseDb.ref('pages_v110').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
+      firebaseDb.ref('cards_v110').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
+      firebaseDb.ref('users_v110').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { 
+          usersList = s.val(); 
+          updateHeaderPendingTests(); 
+        } else {
+          syncToCloud('users', usersList);
+        }
+      });
+      firebaseDb.ref('tests_v110').on('value', s => { if (s.val()) { testsList = s.val(); updateHeaderPendingTests(); } });
+      firebaseDb.ref('results_v110').on('value', s => { if (s.val()) { testResults = s.val(); updateHeaderPendingTests(); } });
+      firebaseDb.ref('perms_v110').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
       firebaseDb.ref('logo').on('value', s => { if (s.val()) { customLogo = s.val(); applyCurrentLogo(); } });
     }
 
@@ -1035,24 +1046,41 @@
       else { el.type = 'password'; btnEl.innerText = '👁️'; }
     }
 
+    /* БЕЗОТКАЗНЫЙ ВХОД В СИСТЕМУ */
     async function handleLogin(e) {
       e.preventDefault();
       const submitBtn = document.getElementById('loginSubmitBtn');
-      submitBtn.innerText = 'Проверка...';
+      submitBtn.innerText = 'Вход...';
       submitBtn.disabled = true;
 
       const loginVal = document.getElementById('loginUsername').value.trim().toLowerCase();
       const passVal = document.getElementById('loginPassword').value.trim();
 
-      let targetList = usersList;
+      // Объединяем пользователей из локального списка и дефолтных
+      let candidates = [...usersList];
+      DEFAULT_USERS.forEach(defU => {
+        if (!candidates.some(c => c.username === defU.username)) {
+          candidates.push(defU);
+        }
+      });
+
+      // Если подключен Firebase, делаем быстрый запрос, но не блокируем вход при тайм-ауте
       if (firebaseDb && isCloudOnline) {
         try {
-          const snap = await firebaseDb.ref('users_v100').once('value');
-          if (snap.val()) targetList = snap.val();
-        } catch(err) {}
+          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject('timeout'), 1500));
+          const fetchPromise = firebaseDb.ref('users_v110').once('value');
+          const snap = await Promise.race([fetchPromise, timeoutPromise]);
+          if (snap && snap.val() && Array.isArray(snap.val())) {
+            candidates = snap.val();
+            usersList = candidates;
+            localStorage.setItem('nadezhda_users_v110', JSON.stringify(usersList));
+          }
+        } catch(err) {
+          console.warn("Сверка с облаком пропущена, вход по локальной базе");
+        }
       }
 
-      const user = targetList.find(x => {
+      const user = candidates.find(x => {
         const uName = (x.username || '').trim().toLowerCase();
         const uMail = (x.email || '').trim().toLowerCase();
         return (uName === loginVal || uMail === loginVal) && x.password === passVal;
@@ -1174,7 +1202,8 @@
           const hiddenBadge = (canManage && !p.showInSidebar && p.id !== 'home') ? `<span class="nav-hidden-badge">скрыто</span>` : '';
 
           item.innerHTML = `
-            <span class="nav-item-title" title="${p.title}">${p.title} ${hiddenBadge}</span>${hideControl}
+            <span class="nav-item-title" title="${p.title}">${p.title} ${hiddenBadge}</span>
+            ${hideControl}
           `;
           section.appendChild(item);
         });
@@ -1187,7 +1216,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = !page.showInSidebar;
-        syncToCloud('pages_v100', pagesList);
+        syncToCloud('pages_v110', pagesList);
         renderSidebar();
       }
     }
@@ -1212,8 +1241,8 @@
           ]
         });
         card.pageId = targetPageId;
-        syncToCloud('pages_v100', pagesList);
-        syncToCloud('cards_v100', dashCards);
+        syncToCloud('pages_v110', pagesList);
+        syncToCloud('cards_v110', dashCards);
       }
 
       openDoc(targetPageId);
@@ -1278,7 +1307,7 @@
       const temp = dashCards[index];
       dashCards[index] = dashCards[newIndex];
       dashCards[newIndex] = temp;
-      syncToCloud('cards_v100', dashCards);
+      syncToCloud('cards_v110', dashCards);
       renderPage('home');
     }
 
@@ -1308,8 +1337,8 @@
         color: original.color
       });
 
-      syncToCloud('pages_v100', pagesList);
-      syncToCloud('cards_v100', dashCards);
+      syncToCloud('pages_v110', pagesList);
+      syncToCloud('cards_v110', dashCards);
       renderPage('home');
     }
 
@@ -1321,7 +1350,7 @@
       const temp = page.blocks[index];
       page.blocks[index] = page.blocks[newIndex];
       page.blocks[newIndex] = temp;
-      syncToCloud('pages_v100', pagesList);
+      syncToCloud('pages_v110', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1331,7 +1360,7 @@
       const copy = JSON.parse(JSON.stringify(page.blocks[index]));
       copy.title = (copy.title || '') + ' (Копия)';
       page.blocks.splice(index + 1, 0, copy);
-      syncToCloud('pages_v100', pagesList);
+      syncToCloud('pages_v110', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1373,12 +1402,12 @@
       `;
     }
 
-    /* РЕНДЕР СТРАНИЦЫ (ВКЛЮЧАЯ ЭКРАН ТЕСТИРОВАНИЯ И ПРЕЗЕНТАЦИИ) */
+    /* РЕНДЕР СТРАНИЦЫ */
     function renderPage(pageId) {
       const area = document.getElementById('documentArea');
       const canEdit = currentUser && (currentUser.role === 'admin' || currentUser.role === 'head');
 
-      // 1. Экран тестирований сотрудника
+      // 1. Экран тестирований
       if (pageId === 'my_tests') {
         renderMyTestsScreen(area);
         return;
@@ -1400,7 +1429,7 @@
           return `
             <div class="dash-card" onclick="handleCardClick('${c.id}')">
               ${editTools}
-              <div class="dash-card-img" style="background:${c.color \vert{}\vert{} 'var(--brand-blue)'};">${c.icon || '📌'}</div>
+              <div class="dash-card-img" style="background:${c.color || 'var(--brand-blue)'};">${c.icon || '📌'}</div>
               <div class="dash-card-content">
                 <div class="dash-card-title">${c.title}</div>
                 <div class="dash-card-desc">${c.desc}</div>
@@ -1440,7 +1469,7 @@
         return;
       }
 
-      // 3. Страница конкретного регламента
+      // 3. Страница регламента
       const page = pagesList.find(p => p.id === pageId) || pagesList[0];
 
       let blocksHtml = (page.blocks || []).map((b, idx) => {
@@ -1456,17 +1485,14 @@
 
         let contentHtml = '';
 
-        // ИНТЕРАКТИВНАЯ ПРЕЗЕНТАЦИЯ (СЛАЙДЕР С ПЕРЕМОТКОЙ)
         if (b.type === 'presentation') {
-          const slides = b.slides || [
-            { title: "Слайд 1", text: "Содержание презентации...", img: "" }
-          ];
+          const slides = b.slides || [{ title: "Слайд 1", text: "Содержание презентации...", img: "" }];
           const presId = 'pres_' + page.id + '_' + idx;
           const currentSlideIdx = presentationStates[presId] || 0;
           const currentSlide = slides[currentSlideIdx] || slides[0];
 
           const dotsHtml = slides.map((s, sIdx) => `
-            <div class="pres-dot ${sIdx === currentSlideIdx ? 'active' : ''}" onclick="goToSlide('${presId}',${sIdx})" style="cursor:pointer;"></div>
+            <div class="pres-dot ${sIdx === currentSlideIdx ? 'active' : ''}" onclick="goToSlide('${presId}', ${sIdx})" style="cursor:pointer;"></div>
           `).join('');
 
           contentHtml = `
@@ -1481,9 +1507,9 @@
                 <div class="pres-slide-text">${parseInternalWikiLinks(currentSlide.text || '')}</div>
               </div>
               <div class="presentation-footer">
-                <button class="btn btn-outline" style="padding:6px 14px;" onclick="prevSlide('${presId}',${slides.length})">◀ Предыдущий</button>
+                <button class="btn btn-outline" style="padding:6px 14px;" onclick="prevSlide('${presId}', ${slides.length})">◀ Предыдущий</button>
                 <div class="presentation-dots">${dotsHtml}</div>
-                <button class="btn btn-primary" style="padding:6px 14px;" onclick="nextSlide('${presId}',${slides.length})">Следующий ▶</button>
+                <button class="btn btn-primary" style="padding:6px 14px;" onclick="nextSlide('${presId}', ${slides.length})">Следующий ▶</button>
               </div>
             </div>
           `;
@@ -1611,7 +1637,8 @@
               <div>
                 <h3 style="color:var(--brand-deep); margin-bottom:4px;">${t.title}</h3>
                 <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">
-                  ⏱️ Время: <strong>${t.timeLimit \vert{}\vert{} 10} мин</strong> \vert{} Вопросов: <strong>${(t.questions||[]).length}</strong> | Проходной балл: <strong>${t.passingScore}\%</strong>${myResult ? ` | Итог: <strong style="color:${myResult.passed ? 'var(--accent-green)' : 'var(--accent-red)'}">${myResult.score}% (${myResult.passed ? 'Сдано' : 'Не сдано'})</strong>` : ''}
+                  ⏱️ Время: <strong>${t.timeLimit || 10} мин</strong> | Вопросов: <strong>${(t.questions||[]).length}</strong> | Проходной балл: <strong>${t.passingScore}%</strong>
+                  ${myResult ? ` | Итог: <strong style="color:${myResult.passed ? 'var(--accent-green)' : 'var(--accent-red)'}">${myResult.score}% (${myResult.passed ? 'Сдано' : 'Не сдано'})</strong>` : ''}
                 </div>
               </div>
               <button class="btn btn-primary" onclick="startTestWithTimer('${t.id}')">
@@ -1645,7 +1672,7 @@
 
       let questionsHtml = (test.questions || []).map((q, qIdx) => `
         <div class="test-question-box">
-          <div style="font-weight:700; color:var(--brand-deep); margin-bottom:12px;">Вопрос #${qIdx + 1}:${q.text}</div>
+          <div style="font-weight:700; color:var(--brand-deep); margin-bottom:12px;">Вопрос #${qIdx + 1}: ${q.text}</div>
           <div>
             ${q.options.map((opt, optIdx) => `
               <label class="test-option-label">
@@ -1726,13 +1753,13 @@
         passed: passed
       });
 
-      syncToCloud('results_v100', testResults);
+      syncToCloud('results_v110', testResults);
       updateHeaderPendingTests();
-      alert(`Итог:\nБалл: ${score}\%\nСтатус: ${passed ? 'Зачёт (Сдано) ✅' : 'Не зачёт ❌'}`);
+      alert(`Итог:\nБалл: ${score}%\nСтатус: ${passed ? 'Зачёт (Сдано) ✅' : 'Не зачёт ❌'}`);
       openDoc('my_tests');
     }
 
-    /* УПРАВЛЕНИЕ ТЕСТАМИ (КОНСТРУКТОР) */
+    /* КОНСТРУКТОР ТЕСТОВ */
     function openManageTestsModal() {
       renderTestsTable();
       document.getElementById('manageTestsModal').classList.add('active');
@@ -1826,7 +1853,7 @@
         questions: builderQuestions
       });
 
-      syncToCloud('tests_v100', testsList);
+      syncToCloud('tests_v110', testsList);
       document.getElementById('createTestModal').classList.remove('active');
       renderTestsTable();
       updateHeaderPendingTests();
@@ -1836,7 +1863,7 @@
     function deleteTest(testId) {
       if (confirm('Удалить тест?')) {
         testsList = testsList.filter(t => t.id !== testId);
-        syncToCloud('tests_v100', testsList);
+        syncToCloud('tests_v110', testsList);
         renderTestsTable();
         updateHeaderPendingTests();
       }
@@ -1920,7 +1947,7 @@
           showInSidebar: false,
           blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: desc || 'Заполните содержание регламента...' }]
         });
-        syncToCloud('pages_v100', pagesList);
+        syncToCloud('pages_v110', pagesList);
       }
 
       if (id) {
@@ -1930,7 +1957,7 @@
         dashCards.push({ id: 'card_' + Date.now(), title, desc, icon, pageId: finalPageId, color });
       }
 
-      syncToCloud('cards_v100', dashCards);
+      syncToCloud('cards_v110', dashCards);
       closeModuleModal();
       renderPage('home');
       renderSidebar();
@@ -1940,7 +1967,7 @@
       if (e) e.stopPropagation();
       if (confirm('Удалить эту карточку направления?')) {
         dashCards = dashCards.filter(c => c.id !== cardId);
-        syncToCloud('cards_v100', dashCards);
+        syncToCloud('cards_v110', dashCards);
         renderPage('home');
       }
     }
@@ -1976,7 +2003,7 @@
         blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: 'Заполните содержание обучения или регламента...' }]
       });
 
-      syncToCloud('pages_v100', pagesList);
+      syncToCloud('pages_v110', pagesList);
       closePageRecordModal();
       renderSidebar();
       openDoc(newId);
@@ -1998,7 +2025,7 @@
 
         tbody.innerHTML += `
           <tr>
-            <td><strong>${p.title}</strong>${attachedCard ? `<br><small style="color:var(--brand-blue);">🔗 Карточка: ${attachedCard.title}</small>` : ''}</td>
+            <td><strong>${p.title}</strong> ${attachedCard ? `<br><small style="color:var(--brand-blue);">🔗 Карточка: ${attachedCard.title}</small>` : ''}</td>
             <td><span class="tag tag-blue">${p.category || '—'}</span></td>
             <td style="text-align:center;">
               ${isHome ? 'Всегда' : `
@@ -2018,7 +2045,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = isChecked;
-        syncToCloud('pages_v100', pagesList);
+        syncToCloud('pages_v110', pagesList);
         renderSidebar();
       }
     }
@@ -2030,8 +2057,8 @@
         dashCards.forEach(c => {
           if (c.pageId === pageId) c.pageId = 'home';
         });
-        syncToCloud('pages_v100', pagesList);
-        syncToCloud('cards_v100', dashCards);
+        syncToCloud('pages_v110', pagesList);
+        syncToCloud('cards_v110', dashCards);
         renderSidebar();
         if (document.getElementById('allPagesModal').classList.contains('active')) renderAllPagesTable();
         openDoc('home');
@@ -2056,4 +2083,290 @@
             <button type="button" class="btn-icon" style="color:var(--accent-red);" onclick="builderSlides.splice(${idx}, 1); renderPresentationSlidesBuilder();">🗑️</button>
           </div>
           <input type="text" placeholder="Заголовок слайда..." value="${s.title}" oninput="builderSlides[${idx}].title = this.value" style="margin-bottom:4px;">
-          <textarea placeholder="Т
+          <textarea placeholder="Текст на слайде..." oninput="builderSlides[${idx}].text = this.value" style="min-height:50px; margin-bottom:4px;">${s.text}</textarea>
+          <input type="text" placeholder="Ссылка на изображение (URL)..." value="${s.img || ''}" oninput="builderSlides[${idx}].img = this.value">
+        `;
+        c.appendChild(item);
+      });
+    }
+
+    /* РЕДАКТИРОВАНИЕ ПУНКТОВ РЕГЛАМЕНТА */
+    function toggleArticleBlockFields() {
+      const type = document.getElementById('articleBlockTypeSelect').value;
+      const grpUrl = document.getElementById('grpBlockUrl');
+      const grpAccPages = document.getElementById('grpBlockAccordionPages');
+      const grpPresentation = document.getElementById('grpBlockPresentation');
+      const grpText = document.getElementById('grpBlockText');
+      const lblText = document.getElementById('lblBlockText');
+
+      grpUrl.style.display = (type === 'image' || type === 'video' || type === 'file') ? 'block' : 'none';
+      grpAccPages.style.display = (type === 'accordion') ? 'block' : 'none';
+      grpPresentation.style.display = (type === 'presentation') ? 'block' : 'none';
+      grpText.style.display = (type === 'presentation') ? 'none' : 'block';
+
+      if (type === 'accordion') {
+        lblText.innerText = 'Текст внутри выпадающей вкладки (описание/вводная часть)';
+      } else {
+        lblText.innerText = 'Текст описания / Инструкция';
+      }
+    }
+
+    function renderAccordionPagesCheckboxes(selectedPageIds = []) {
+      const container = document.getElementById('accordionPagesCheckboxList');
+      container.innerHTML = pagesList.filter(p => p.id !== 'home' && p.id !== currentPageId).map(p => `
+        <label style="display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.85rem; cursor:pointer;">
+          <input type="checkbox" value="${p.id}" ${selectedPageIds.includes(p.id) ? 'checked' : ''} class="acc-page-chk" style="width:16px; height:16px; accent-color:var(--brand-blue);">
+          <span>${p.title} (${p.category || 'Раздел'})</span>
+        </label>
+      `).join('');
+    }
+
+    function openCreateArticleBlockModal() {
+      document.getElementById('articleBlockIndex').value = '';
+      document.getElementById('articleBlockModalTitle').innerText = 'Добавить новый пункт регламента';
+      document.getElementById('articleBlockTitleInput').value = '';
+      document.getElementById('articleBlockTextInput').value = '';
+      document.getElementById('articleBlockUrlInput').value = '';
+      document.getElementById('articleBlockTypeSelect').value = 'banner';
+      
+      builderSlides = [{ title: "Слайд 1", text: "", img: "" }];
+      renderPresentationSlidesBuilder();
+      renderAccordionPagesCheckboxes([]);
+      toggleArticleBlockFields();
+      document.getElementById('articleBlockModal').classList.add('active');
+    }
+
+    function openEditArticleBlockModal(idx) {
+      const page = pagesList.find(p => p.id === currentPageId);
+      if (!page || !page.blocks[idx]) return;
+      const b = page.blocks[idx];
+
+      document.getElementById('articleBlockIndex').value = idx;
+      document.getElementById('articleBlockModalTitle').innerText = 'Редактировать пункт';
+      document.getElementById('articleBlockTypeSelect').value = b.type || 'banner';
+      document.getElementById('articleBlockTitleInput').value = b.title || '';
+      document.getElementById('articleBlockTextInput').value = b.text || (b.items ? b.items.join('\n') : '');
+      document.getElementById('articleBlockUrlInput').value = b.url || '';
+      
+      builderSlides = b.slides ? JSON.parse(JSON.stringify(b.slides)) : [{ title: "Слайд 1", text: "", img: "" }];
+      renderPresentationSlidesBuilder();
+      renderAccordionPagesCheckboxes(b.attachedPages || []);
+      toggleArticleBlockFields();
+      document.getElementById('articleBlockModal').classList.add('active');
+    }
+
+    function closeArticleBlockModal() {
+      document.getElementById('articleBlockModal').classList.remove('active');
+    }
+
+    function saveArticleBlock() {
+      const page = pagesList.find(p => p.id === currentPageId);
+      if (!page) return;
+
+      const idxStr = document.getElementById('articleBlockIndex').value;
+      const type = document.getElementById('articleBlockTypeSelect').value;
+      const title = document.getElementById('articleBlockTitleInput').value.trim();
+      const text = document.getElementById('articleBlockTextInput').value;
+      const url = document.getElementById('articleBlockUrlInput').value.trim();
+
+      page.blocks = page.blocks || [];
+
+      const newBlock = { type, title, text, url };
+
+      if (type === 'checklist') {
+        newBlock.items = text.split('\n').filter(x => x.trim());
+      } else if (type === 'accordion') {
+        const checkedPages = [];
+        document.querySelectorAll('.acc-page-chk:checked').forEach(c => checkedPages.push(c.value));
+        newBlock.attachedPages = checkedPages;
+      } else if (type === 'presentation') {
+        newBlock.slides = builderSlides;
+      }
+
+      if (idxStr !== '') {
+        page.blocks[parseInt(idxStr)] = newBlock;
+      } else {
+        page.blocks.push(newBlock);
+      }
+
+      syncToCloud('pages_v110', pagesList);
+      closeArticleBlockModal();
+      renderPage(currentPageId);
+    }
+
+    function deleteArticleBlock(idx) {
+      const page = pagesList.find(p => p.id === currentPageId);
+      if (!page) return;
+      if (confirm('Удалить этот пункт?')) {
+        page.blocks.splice(idx, 1);
+        syncToCloud('pages_v110', pagesList);
+        renderPage(currentPageId);
+      }
+    }
+
+    /* ПОЛЬЗОВАТЕЛИ И МАТРИЦА ПРАВ */
+    function openUsersModal() {
+      renderRolePermissionsMatrix();
+      renderUsersTable();
+      document.getElementById('usersModal').classList.add('active');
+    }
+    function closeUsersModal() { document.getElementById('usersModal').classList.remove('active'); }
+
+    function switchVmTab(tab) {
+      document.getElementById('tabRolesBtn').classList.toggle('active', tab === 'roles');
+      document.getElementById('tabUsersBtn').classList.toggle('active', tab === 'users');
+      document.getElementById('vmRolesTabContent').style.display = (tab === 'roles') ? 'block' : 'none';
+      document.getElementById('vmUsersTabContent').style.display = (tab === 'users') ? 'block' : 'none';
+    }
+
+    function renderRolePermissionsMatrix() {
+      const role = document.getElementById('vmSelectRole').value;
+      const table = document.getElementById('vmRolePermsTable');
+
+      rolePermissions[role] = rolePermissions[role] || {};
+
+      let html = `
+        <thead>
+          <tr>
+            <th style="width:34%;">Модуль / Раздел</th>
+            <th>Просмотр</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+            <th>Администрирование</th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
+
+      VM_MODULES.forEach(mod => {
+        const p = rolePermissions[role][mod.id] || { view: true, edit: false, del: false, admin: false };
+        html += `
+          <tr>
+            <td>${mod.name}</td>
+            <td class="cell-perm ${p.view ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'view')">
+              <input type="checkbox" ${p.view ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'view')">
+            </td>
+            <td class="cell-perm ${p.edit ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'edit')">
+              <input type="checkbox" ${p.edit ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'edit')">
+            </td>
+            <td class="cell-perm ${p.del ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'del')">
+              <input type="checkbox" ${p.del ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'del')">
+            </td>
+            <td class="cell-perm ${p.admin ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'admin')">
+              <input type="checkbox" ${p.admin ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'admin')">
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody>';
+      table.innerHTML = html;
+    }
+
+    function togglePerm(role, modId, permType) {
+      rolePermissions[role] = rolePermissions[role] || {};
+      rolePermissions[role][modId] = rolePermissions[role][modId] || { view: true, edit: false, del: false, admin: false };
+      rolePermissions[role][modId][permType] = !rolePermissions[role][modId][permType];
+
+      syncToCloud('perms_v110', rolePermissions);
+      renderRolePermissionsMatrix();
+    }
+
+    function renderUsersTable() {
+      const tbody = document.getElementById('usersTableBody');
+      tbody.innerHTML = '';
+      usersList.forEach(u => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${u.fullName}</strong></td><td><code>${u.username}</code></td><td>${u.email||'—'}</td><td>${u.roleName}</td>
+            <td>${u.username !== 'admin' ? `<button class="btn btn-outline" style="color:var(--accent-red); padding:2px 6px;" onclick="deleteUser('${u.id}')">Удалить</button>` : 'Администратор'}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function openCreateUserForm() { document.getElementById('newUserModal').classList.add('active'); }
+    
+    function saveNewUser() {
+      const fullName = document.getElementById('newFullName').value.trim();
+      const email = document.getElementById('newEmail').value.trim();
+      const username = document.getElementById('newUsername').value.trim();
+      const password = document.getElementById('newPassword').value.trim();
+      const role = document.getElementById('newRole').value;
+      const roleName = document.getElementById('newRole').options[document.getElementById('newRole').selectedIndex].text;
+      const autoTest = document.getElementById('autoAssignIntroTest').checked;
+
+      if (!fullName || !username || !password || !email) return alert('Заполните все поля!');
+      const newUserId = 'u_' + Date.now();
+      
+      usersList.push({ id: newUserId, fullName, email, username, password, role, roleName });
+      syncToCloud('users_v110', usersList);
+
+      // АВТОМАТИЧЕСКОЕ НАЗНАЧЕНИЕ ТЕСТИРОВАНИЯ
+      if (autoTest) {
+        testsList.push({
+          id: 'test_auto_' + Date.now(),
+          title: 'Вступительная аттестация: ' + fullName,
+          targetType: 'user',
+          targetVal: newUserId,
+          targetName: fullName,
+          timeLimit: 10,
+          passingScore: 80,
+          questions: [
+            { text: "К какой категории относится одышка с открытым ртом?", options: ["Красная", "Желтая", "Зеленая"], correct: 0 },
+            { text: "Действие при подозрении на заворот желудка у собаки:", options: ["Оформить договор", "Срочно позвать дежурного врача", "Поставить в очередь"], correct: 1 }
+          ]
+        });
+        syncToCloud('tests_v110', testsList);
+      }
+
+      document.getElementById('newUserModal').classList.remove('active');
+      openUsersModal();
+      alert('Сотрудник зарегистрирован! Обучение и тест автоматически назначены.');
+    }
+
+    function deleteUser(id) {
+      if (confirm('Удалить сотрудника?')) {
+        usersList = usersList.filter(u => u.id !== id);
+        syncToCloud('users_v110', usersList);
+        openUsersModal();
+      }
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify({ pages: pagesList, cards: dashCards, users: usersList, tests: testsList, results: testResults, perms: rolePermissions }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = `nadezhda_full_${new Date().toISOString().slice(0,10)}.json`; a.click();
+    }
+
+    function importData(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const d = JSON.parse(evt.target.result);
+          if (d.pages) {
+            pagesList = d.pages;
+            dashCards = d.cards || dashCards;
+            usersList = d.users || usersList;
+            testsList = d.tests || testsList;
+            testResults = d.results || testResults;
+            rolePermissions = d.perms || rolePermissions;
+            syncToCloud('pages_v110', pagesList);
+            syncToCloud('cards_v110', dashCards);
+            syncToCloud('users_v110', usersList);
+            syncToCloud('tests_v110', testsList);
+            syncToCloud('results_v110', testResults);
+            syncToCloud('perms_v110', rolePermissions);
+            location.reload();
+          }
+        } catch(err) { alert('Ошибка импорта'); }
+      };
+      reader.readAsText(file);
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
