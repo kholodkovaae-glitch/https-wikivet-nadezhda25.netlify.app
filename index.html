@@ -44,7 +44,7 @@
       overflow: hidden;
     }
 
-    /* Авторизация */
+    /* Экран входа */
     .auth-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(11, 37, 62, 0.88); backdrop-filter: blur(6px);
@@ -73,7 +73,7 @@
       background: none; border: none; cursor: pointer; font-size: 1.1rem; opacity: 0.6;
     }
 
-    /* Шапка сайта */
+    /* Шапка */
     .header {
       position: fixed; top: 0; left: 0; right: 0; height: 72px;
       background: #FFFFFF; border-bottom: 3px solid var(--brand-blue);
@@ -88,7 +88,7 @@
     .header-logo { display: flex; align-items: center; cursor: pointer; }
     .header-logo-img { height: 48px; max-width: 210px; object-fit: contain; display: block; }
 
-    /* Поиск в шапке */
+    /* Поиск */
     .header-search-container { display: flex; align-items: center; gap: 6px; position: relative; margin: 0 12px; }
     .header-search { width: 280px; position: relative; }
     .header-search input {
@@ -245,14 +245,6 @@
       border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
       margin: 16px 0 24px; box-shadow: 0 2px 8px rgba(252, 63, 29, 0.08); gap: 14px;
     }
-
-    /* Ссылки внутри текста */
-    .wiki-internal-link {
-      color: var(--brand-blue); background: var(--brand-light); padding: 3px 8px; border-radius: 6px;
-      text-decoration: none; font-weight: 700; border: 1px solid var(--brand-border); cursor: pointer;
-      display: inline-flex; align-items: center; gap: 4px; margin: 0 2px; transition: all 0.15s;
-    }
-    .wiki-internal-link:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 
     /* Блоки статьи */
     .page-block-wrapper { position: relative; margin-bottom: 20px; border-radius: 10px; }
@@ -744,7 +736,6 @@
         <div class="vm-tab" id="tabUsersBtn" onclick="switchVmTab('users')">Список пользователей</div>
       </div>
 
-      <!-- Вкладка 1: Матрица допуска по ролям -->
       <div id="vmRolesTabContent">
         <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">
           Нажмите на ячейку для переключения допуска (зелёный — разрешено, красный — запрещено).
@@ -762,7 +753,6 @@
         <table class="perm-grid-table" id="vmRolePermsTable"></table>
       </div>
 
-      <!-- Вкладка 2: Пользователи -->
       <div id="vmUsersTabContent" style="display:none;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <span style="font-size:0.85rem; color:var(--text-muted);">Зарегистрированные пользователи:</span>
@@ -795,9 +785,6 @@
           <option value="reception">Администратор рецепции</option>
           <option value="assistant">Ассистент врача</option>
           <option value="doctor">Ветеринарный врач</option>
-          <option value="hirurg">Хирург</option>
-          <option value="laborant">Лаборант</option>
-          <option value="stomatolog">Стоматолог</option>
           <option value="head">Заведующий отделением</option>
           <option value="admin">Управляющий (Полный доступ)</option>
         </select>
@@ -825,7 +812,7 @@
   </div>
 
   <script>
-    /* ПАРАМЕТРЫ FIREBASE */
+    /* ПАРАМЕТРЫ FIREBASE ПРОЕКТА */
     const firebaseConfig = {
       apiKey: "AIzaSyD_jmZbvNN73hL4fOiSbSpzH-v43wLSkGw",
       authDomain: "wikivet-nadezhda.firebaseapp.com",
@@ -955,13 +942,14 @@
       { id: "c_surgery", title: "Хирургия и оперблок", desc: "Предоперационный чек-лист, наркозный протокол, стерилизация.", icon: "🔪", pageId: "page_surgery", color: "linear-gradient(135deg, #0F766E, #14B8A6)" }
     ];
 
-    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v110')) || DEFAULT_PAGES;
-    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v110')) || DEFAULT_DASH_CARDS;
-    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v110')) || DEFAULT_USERS;
-    let testsList = JSON.parse(localStorage.getItem('nadezhda_tests_v110')) || DEFAULT_TESTS;
-    let testResults = JSON.parse(localStorage.getItem('nadezhda_test_results_v110')) || [];
-    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v110')) || {};
-    let customLogo = localStorage.getItem('nadezhda_uploaded_logo') || DEFAULT_LOGO_DATA_URL;
+    // ЕДИНАЯ СТАБИЛЬНАЯ БАЗА
+    let pagesList = JSON.parse(localStorage.getItem('wikivet_pages')) || DEFAULT_PAGES;
+    let dashCards = JSON.parse(localStorage.getItem('wikivet_cards')) || DEFAULT_DASH_CARDS;
+    let usersList = JSON.parse(localStorage.getItem('wikivet_users')) || DEFAULT_USERS;
+    let testsList = JSON.parse(localStorage.getItem('wikivet_tests')) || DEFAULT_TESTS;
+    let testResults = JSON.parse(localStorage.getItem('wikivet_test_results')) || [];
+    let rolePermissions = JSON.parse(localStorage.getItem('wikivet_role_perms')) || {};
+    let customLogo = localStorage.getItem('wikivet_uploaded_logo') || DEFAULT_LOGO_DATA_URL;
 
     let currentUser = JSON.parse(sessionStorage.getItem('nadezhda_active_user')) || null;
     let currentPageId = "home";
@@ -974,11 +962,11 @@
     let activeTestTotalSeconds = 0;
     let presentationStates = {};
 
-    /* ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ */
+    /* ПРЯМАЯ СИНХРОНИЗАЦИЯ */
     function syncToCloud(key, data) {
-      localStorage.setItem('nadezhda_' + key + '_v110', JSON.stringify(data));
+      localStorage.setItem('wikivet_' + key, JSON.stringify(data));
       if (firebaseDb && isCloudOnline) {
-        firebaseDb.ref(key + '_v110').set(data).catch(e => console.error("Firebase write error:", e));
+        firebaseDb.ref('wikivet_db/' + key).set(data).catch(e => console.error("Firebase error:", e));
       }
     }
 
@@ -989,20 +977,33 @@
         return;
       }
 
-      firebaseDb.ref('pages_v110').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
-      firebaseDb.ref('cards_v110').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
-      firebaseDb.ref('users_v110').on('value', s => { 
-        if (s.val() && Array.isArray(s.val())) { 
-          usersList = s.val(); 
-          updateHeaderPendingTests(); 
-        } else {
-          syncToCloud('users', usersList);
-        }
+      firebaseDb.ref('wikivet_db/pages').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { pagesList = s.val(); localStorage.setItem('wikivet_pages', JSON.stringify(pagesList)); renderPage(currentPageId); renderSidebar(); } 
+        else { syncToCloud('pages', pagesList); }
       });
-      firebaseDb.ref('tests_v110').on('value', s => { if (s.val()) { testsList = s.val(); updateHeaderPendingTests(); } });
-      firebaseDb.ref('results_v110').on('value', s => { if (s.val()) { testResults = s.val(); updateHeaderPendingTests(); } });
-      firebaseDb.ref('perms_v110').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
-      firebaseDb.ref('logo').on('value', s => { if (s.val()) { customLogo = s.val(); applyCurrentLogo(); } });
+      firebaseDb.ref('wikivet_db/cards').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { dashCards = s.val(); localStorage.setItem('wikivet_cards', JSON.stringify(dashCards)); if (currentPageId === 'home') renderPage('home'); } 
+        else { syncToCloud('cards', dashCards); }
+      });
+      firebaseDb.ref('wikivet_db/users').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { usersList = s.val(); localStorage.setItem('wikivet_users', JSON.stringify(usersList)); updateHeaderPendingTests(); } 
+        else { syncToCloud('users', usersList); }
+      });
+      firebaseDb.ref('wikivet_db/tests').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { testsList = s.val(); localStorage.setItem('wikivet_tests', JSON.stringify(testsList)); updateHeaderPendingTests(); } 
+        else { syncToCloud('tests', testsList); }
+      });
+      firebaseDb.ref('wikivet_db/test_results').on('value', s => { 
+        if (s.val() && Array.isArray(s.val())) { testResults = s.val(); localStorage.setItem('wikivet_test_results', JSON.stringify(testResults)); updateHeaderPendingTests(); } 
+        else { syncToCloud('test_results', testResults); }
+      });
+      firebaseDb.ref('wikivet_db/role_perms').on('value', s => { 
+        if (s.val()) { rolePermissions = s.val(); localStorage.setItem('wikivet_role_perms', JSON.stringify(rolePermissions)); } 
+        else { syncToCloud('role_perms', rolePermissions); }
+      });
+      firebaseDb.ref('wikivet_db/logo').on('value', s => { 
+        if (s.val()) { customLogo = s.val(); localStorage.setItem('wikivet_uploaded_logo', customLogo); applyCurrentLogo(); } 
+      });
     }
 
     function initApp() {
@@ -1030,8 +1031,7 @@
       const reader = new FileReader();
       reader.onload = function(evt) {
         customLogo = evt.target.result;
-        localStorage.setItem('nadezhda_uploaded_logo', customLogo);
-        if (firebaseDb && isCloudOnline) firebaseDb.ref('logo').set(customLogo);
+        syncToCloud('logo', customLogo);
         applyCurrentLogo();
         alert('Логотип клиники обновлен!');
       };
@@ -1049,48 +1049,23 @@
       else { el.type = 'password'; btnEl.innerText = '👁️'; }
     }
 
-    /* БЕЗОТКАЗНЫЙ ВХОД В СИСТЕМУ */
-    async function handleLogin(e) {
+    /* БЕЗОТКАЗНЫЙ ВХОД */
+    function handleLogin(e) {
       e.preventDefault();
-      const submitBtn = document.getElementById('loginSubmitBtn');
-      submitBtn.innerText = 'Вход...';
-      submitBtn.disabled = true;
-
       const loginVal = document.getElementById('loginUsername').value.trim().toLowerCase();
       const passVal = document.getElementById('loginPassword').value.trim();
 
-      // Объединяем пользователей из локального списка и дефолтных
-      let candidates = [...usersList];
-      DEFAULT_USERS.forEach(defU => {
-        if (!candidates.some(c => c.username === defU.username)) {
-          candidates.push(defU);
-        }
+      // Гарантированный пул пользователей
+      let pool = [...DEFAULT_USERS];
+      (usersList || []).forEach(u => {
+        if (!pool.some(p => p.username === u.username)) pool.push(u);
       });
 
-      // Если подключен Firebase, делаем быстрый запрос, но не блокируем вход при тайм-ауте
-      if (firebaseDb && isCloudOnline) {
-        try {
-          const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject('timeout'), 1500));
-          const fetchPromise = firebaseDb.ref('users_v110').once('value');
-          const snap = await Promise.race([fetchPromise, timeoutPromise]);
-          if (snap && snap.val() && Array.isArray(snap.val())) {
-            candidates = snap.val();
-            usersList = candidates;
-            localStorage.setItem('nadezhda_users_v110', JSON.stringify(usersList));
-          }
-        } catch(err) {
-          console.warn("Сверка с облаком пропущена, вход по локальной базе");
-        }
-      }
-
-      const user = candidates.find(x => {
+      const user = pool.find(x => {
         const uName = (x.username || '').trim().toLowerCase();
         const uMail = (x.email || '').trim().toLowerCase();
         return (uName === loginVal || uMail === loginVal) && x.password === passVal;
       });
-
-      submitBtn.innerText = 'Войти в систему';
-      submitBtn.disabled = false;
 
       if (user) {
         currentUser = user;
@@ -1219,7 +1194,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = !page.showInSidebar;
-        syncToCloud('pages_v110', pagesList);
+        syncToCloud('pages', pagesList);
         renderSidebar();
       }
     }
@@ -1244,8 +1219,8 @@
           ]
         });
         card.pageId = targetPageId;
-        syncToCloud('pages_v110', pagesList);
-        syncToCloud('cards_v110', dashCards);
+        syncToCloud('pages', pagesList);
+        syncToCloud('cards', dashCards);
       }
 
       openDoc(targetPageId);
@@ -1284,7 +1259,7 @@
       block.classList.toggle('open');
     }
 
-    /* УПРАВЛЕНИЕ СЛАЙДАМИ ПРЕЗЕНТАЦИИ */
+    /* СЛАЙДЕР ПРЕЗЕНТАЦИЙ */
     function prevSlide(presId, totalSlides) {
       presentationStates[presId] = presentationStates[presId] || 0;
       presentationStates[presId] = (presentationStates[presId] - 1 + totalSlides) % totalSlides;
@@ -1310,7 +1285,7 @@
       const temp = dashCards[index];
       dashCards[index] = dashCards[newIndex];
       dashCards[newIndex] = temp;
-      syncToCloud('cards_v110', dashCards);
+      syncToCloud('cards', dashCards);
       renderPage('home');
     }
 
@@ -1340,8 +1315,8 @@
         color: original.color
       });
 
-      syncToCloud('pages_v110', pagesList);
-      syncToCloud('cards_v110', dashCards);
+      syncToCloud('pages', pagesList);
+      syncToCloud('cards', dashCards);
       renderPage('home');
     }
 
@@ -1353,7 +1328,7 @@
       const temp = page.blocks[index];
       page.blocks[index] = page.blocks[newIndex];
       page.blocks[newIndex] = temp;
-      syncToCloud('pages_v110', pagesList);
+      syncToCloud('pages', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1363,7 +1338,7 @@
       const copy = JSON.parse(JSON.stringify(page.blocks[index]));
       copy.title = (copy.title || '') + ' (Копия)';
       page.blocks.splice(index + 1, 0, copy);
-      syncToCloud('pages_v110', pagesList);
+      syncToCloud('pages', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1756,7 +1731,7 @@
         passed: passed
       });
 
-      syncToCloud('results_v110', testResults);
+      syncToCloud('test_results', testResults);
       updateHeaderPendingTests();
       alert(`Итог:\nБалл: ${score}%\nСтатус: ${passed ? 'Зачёт (Сдано) ✅' : 'Не зачёт ❌'}`);
       openDoc('my_tests');
@@ -1856,7 +1831,7 @@
         questions: builderQuestions
       });
 
-      syncToCloud('tests_v110', testsList);
+      syncToCloud('tests', testsList);
       document.getElementById('createTestModal').classList.remove('active');
       renderTestsTable();
       updateHeaderPendingTests();
@@ -1866,7 +1841,7 @@
     function deleteTest(testId) {
       if (confirm('Удалить тест?')) {
         testsList = testsList.filter(t => t.id !== testId);
-        syncToCloud('tests_v110', testsList);
+        syncToCloud('tests', testsList);
         renderTestsTable();
         updateHeaderPendingTests();
       }
@@ -1950,7 +1925,7 @@
           showInSidebar: false,
           blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: desc || 'Заполните содержание регламента...' }]
         });
-        syncToCloud('pages_v110', pagesList);
+        syncToCloud('pages', pagesList);
       }
 
       if (id) {
@@ -1960,7 +1935,7 @@
         dashCards.push({ id: 'card_' + Date.now(), title, desc, icon, pageId: finalPageId, color });
       }
 
-      syncToCloud('cards_v110', dashCards);
+      syncToCloud('cards', dashCards);
       closeModuleModal();
       renderPage('home');
       renderSidebar();
@@ -1970,7 +1945,7 @@
       if (e) e.stopPropagation();
       if (confirm('Удалить эту карточку направления?')) {
         dashCards = dashCards.filter(c => c.id !== cardId);
-        syncToCloud('cards_v110', dashCards);
+        syncToCloud('cards', dashCards);
         renderPage('home');
       }
     }
@@ -2006,13 +1981,13 @@
         blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: 'Заполните содержание обучения или регламента...' }]
       });
 
-      syncToCloud('pages_v110', pagesList);
+      syncToCloud('pages', pagesList);
       closePageRecordModal();
       renderSidebar();
       openDoc(newId);
     }
 
-    /* РЕЕСТР: ВСЕ СУЩЕСТВУЮЩИЕ СТРАНИЦЫ */
+    /* РЕЕСТР СТРАНИЦ */
     function openAllPagesManagerModal() {
       renderAllPagesTable();
       document.getElementById('allPagesModal').classList.add('active');
@@ -2048,7 +2023,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = isChecked;
-        syncToCloud('pages_v110', pagesList);
+        syncToCloud('pages', pagesList);
         renderSidebar();
       }
     }
@@ -2060,15 +2035,15 @@
         dashCards.forEach(c => {
           if (c.pageId === pageId) c.pageId = 'home';
         });
-        syncToCloud('pages_v110', pagesList);
-        syncToCloud('cards_v110', dashCards);
+        syncToCloud('pages', pagesList);
+        syncToCloud('cards', dashCards);
         renderSidebar();
         if (document.getElementById('allPagesModal').classList.contains('active')) renderAllPagesTable();
         openDoc('home');
       }
     }
 
-    /* КОНСТРУКТОР СЛАЙДОВ ПРЕЗЕНТАЦИИ */
+    /* КОНСТРУКТОР СЛАЙДОВ */
     function addSlideToPresentationBuilder() {
       builderSlides.push({ title: 'Новый слайд', text: '', img: '' });
       renderPresentationSlidesBuilder();
@@ -2093,7 +2068,7 @@
       });
     }
 
-    /* РЕДАКТИРОВАНИЕ ПУНКТОВ РЕГЛАМЕНТА */
+    /* РЕДАКТИРОВАНИЕ ПУНКТОВ */
     function toggleArticleBlockFields() {
       const type = document.getElementById('articleBlockTypeSelect').value;
       const grpUrl = document.getElementById('grpBlockUrl');
@@ -2192,7 +2167,7 @@
         page.blocks.push(newBlock);
       }
 
-      syncToCloud('pages_v110', pagesList);
+      syncToCloud('pages', pagesList);
       closeArticleBlockModal();
       renderPage(currentPageId);
     }
@@ -2202,7 +2177,7 @@
       if (!page) return;
       if (confirm('Удалить этот пункт?')) {
         page.blocks.splice(idx, 1);
-        syncToCloud('pages_v110', pagesList);
+        syncToCloud('pages', pagesList);
         renderPage(currentPageId);
       }
     }
@@ -2271,7 +2246,7 @@
       rolePermissions[role][modId] = rolePermissions[role][modId] || { view: true, edit: false, del: false, admin: false };
       rolePermissions[role][modId][permType] = !rolePermissions[role][modId][permType];
 
-      syncToCloud('perms_v110', rolePermissions);
+      syncToCloud('role_perms', rolePermissions);
       renderRolePermissionsMatrix();
     }
 
@@ -2303,9 +2278,9 @@
       const newUserId = 'u_' + Date.now();
       
       usersList.push({ id: newUserId, fullName, email, username, password, role, roleName });
-      syncToCloud('users_v110', usersList);
+      syncToCloud('users', usersList);
 
-      // АВТОМАТИЧЕСКОЕ НАЗНАЧЕНИЕ ТЕСТИРОВАНИЯ
+      // Автоматическое назначение теста
       if (autoTest) {
         testsList.push({
           id: 'test_auto_' + Date.now(),
@@ -2320,7 +2295,7 @@
             { text: "Действие при подозрении на заворот желудка у собаки:", options: ["Оформить договор", "Срочно позвать дежурного врача", "Поставить в очередь"], correct: 1 }
           ]
         });
-        syncToCloud('tests_v110', testsList);
+        syncToCloud('tests', testsList);
       }
 
       document.getElementById('newUserModal').classList.remove('active');
@@ -2331,7 +2306,7 @@
     function deleteUser(id) {
       if (confirm('Удалить сотрудника?')) {
         usersList = usersList.filter(u => u.id !== id);
-        syncToCloud('users_v110', usersList);
+        syncToCloud('users', usersList);
         openUsersModal();
       }
     }
@@ -2356,12 +2331,12 @@
             testsList = d.tests || testsList;
             testResults = d.results || testResults;
             rolePermissions = d.perms || rolePermissions;
-            syncToCloud('pages_v110', pagesList);
-            syncToCloud('cards_v110', dashCards);
-            syncToCloud('users_v110', usersList);
-            syncToCloud('tests_v110', testsList);
-            syncToCloud('results_v110', testResults);
-            syncToCloud('perms_v110', rolePermissions);
+            syncToCloud('pages', pagesList);
+            syncToCloud('cards', dashCards);
+            syncToCloud('users', usersList);
+            syncToCloud('tests', testsList);
+            syncToCloud('test_results', testResults);
+            syncToCloud('role_perms', rolePermissions);
             location.reload();
           }
         } catch(err) { alert('Ошибка импорта'); }
