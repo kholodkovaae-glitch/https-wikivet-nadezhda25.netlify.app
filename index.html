@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>База знаний | Ветклиника «Надежда»</title>
+  <title>База знаний и обучение | Ветклиника «Надежда»</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
       overflow: hidden;
     }
 
-    /* Авторизация */
+    /* Экран входа */
     .auth-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(11, 37, 62, 0.88); backdrop-filter: blur(6px);
@@ -73,7 +73,7 @@
       background: none; border: none; cursor: pointer; font-size: 1.1rem; opacity: 0.6;
     }
 
-    /* Шапка сайта */
+    /* Шапка */
     .header {
       position: fixed; top: 0; left: 0; right: 0; height: 72px;
       background: #FFFFFF; border-bottom: 3px solid var(--brand-blue);
@@ -88,9 +88,9 @@
     .header-logo { display: flex; align-items: center; cursor: pointer; }
     .header-logo-img { height: 48px; max-width: 210px; object-fit: contain; display: block; }
 
-    /* Поиск в шапке */
+    /* Поиск */
     .header-search-container { display: flex; align-items: center; gap: 6px; position: relative; margin: 0 12px; }
-    .header-search { width: 310px; position: relative; }
+    .header-search { width: 280px; position: relative; }
     .header-search input {
       width: 100%; padding: 8px 14px 8px 36px;
       border: 1.5px solid var(--brand-border); border-radius: 8px;
@@ -132,9 +132,15 @@
     .user-profile-badge {
       display: flex; align-items: center; gap: 8px; padding-left: 8px; border-left: 1px solid var(--brand-border); position: relative;
     }
+    .avatar-wrapper { position: relative; cursor: pointer; }
     .user-avatar {
       width: 34px; height: 34px; border-radius: 50%; background: var(--brand-deep); color: white;
       font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
+    }
+    .tests-badge-counter {
+      position: absolute; top: -5px; right: -6px; background: var(--accent-red); color: white;
+      font-size: 0.68rem; font-weight: 800; min-width: 17px; height: 17px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; padding: 0 3px; box-shadow: 0 0 0 2px #fff;
     }
     .user-info { font-size: 0.8rem; text-align: left; }
     .user-name { font-weight: 700; color: var(--brand-deep); }
@@ -233,22 +239,14 @@
     }
     .card-tool-btn:hover { background: #E2E8F0; }
 
-    /* Красная плашка Яндекс Диска */
+    /* Красная карточка Яндекс Диска */
     .yandex-integration-card {
       background: #FFFFFF; border: 1.5px solid #FCA5A5; border-left: 5px solid var(--yandex-red);
       border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
       margin: 16px 0 24px; box-shadow: 0 2px 8px rgba(252, 63, 29, 0.08); gap: 14px;
     }
 
-    /* Ссылки внутри текста */
-    .wiki-internal-link {
-      color: var(--brand-blue); background: var(--brand-light); padding: 3px 8px; border-radius: 6px;
-      text-decoration: none; font-weight: 700; border: 1px solid var(--brand-border); cursor: pointer;
-      display: inline-flex; align-items: center; gap: 4px; margin: 0 2px; transition: all 0.15s;
-    }
-    .wiki-internal-link:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
-
-    /* СТИЛИ СТАТЕЙ И МАТЕРИАЛОВ (БЕЗ ВИДА "ЗАМЕТКИ") */
+    /* Блоки статьи */
     .page-block-wrapper { position: relative; margin-bottom: 20px; border-radius: 10px; }
     .page-block-tools {
       position: absolute; top: -12px; right: 14px; display: none; gap: 4px; background: #FFFFFF;
@@ -256,14 +254,12 @@
     }
     .page-block-wrapper:hover .page-block-tools { display: flex; }
 
-    /* Солидный баннер регламента */
     .info-banner {
       background: #FFFFFF; border-left: 4px solid var(--brand-blue); padding: 18px 22px; border-radius: 0 10px 10px 0;
       box-shadow: 0 2px 8px rgba(11, 53, 88, 0.05); border-top: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;
       font-size: 0.95rem; line-height: 1.6;
     }
 
-    /* Чек-лист в виде корпоративной карточки */
     .checklist-card {
       background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 10px;
       padding: 16px 22px; margin: 12px 0; box-shadow: 0 2px 8px rgba(11, 53, 88, 0.04);
@@ -274,7 +270,7 @@
     .check-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--brand-blue); width: 17px; height: 17px; cursor: pointer; }
     .check-item.done span { text-decoration: line-through; color: var(--text-muted); }
 
-    /* ВЫПАДАЮЩАЯ ВКЛАДКА (АККОРДЕОН / СПОЙЛЕР) */
+    /* Выпадающая вкладка */
     .accordion-block {
       background: #FFFFFF; border: 1.5px solid var(--brand-border); border-radius: 10px;
       overflow: hidden; margin: 14px 0; box-shadow: 0 2px 8px rgba(11, 53, 88, 0.04);
@@ -286,9 +282,7 @@
     .accordion-header:hover { background: var(--brand-light); }
     .accordion-arrow { transition: transform 0.2s ease; font-size: 0.85rem; color: var(--brand-blue); }
     .accordion-block.open .accordion-arrow { transform: rotate(180deg); }
-    .accordion-body {
-      display: none; padding: 18px 20px; border-top: 1px solid var(--brand-border); background: #FFFFFF;
-    }
+    .accordion-body { display: none; padding: 18px 20px; border-top: 1px solid var(--brand-border); background: #FFFFFF; }
     .accordion-block.open .accordion-body { display: block; }
     
     .accordion-pages-grid {
@@ -301,19 +295,48 @@
     }
     .accordion-page-btn:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 
-    /* Медиа */
-    .media-card {
-      background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 10px; overflow: hidden;
-      margin: 14px 0; box-shadow: 0 2px 6px rgba(11, 53, 88, 0.04);
+    /* МОДУЛЬ ПРЕЗЕНТАЦИЙ (СЛАЙДЕР С ПЕРЕМОТКОЙ) */
+    .presentation-card {
+      background: #FFFFFF; border: 1.5px solid var(--brand-border); border-radius: 12px;
+      overflow: hidden; margin: 16px 0; box-shadow: 0 4px 14px rgba(11, 53, 88, 0.07);
     }
-    .media-card img { width: 100%; max-height: 460px; object-fit: contain; display: block; background: #F8FAFD; }
-    .media-video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
-    .media-video-wrap iframe, .media-video-wrap video { position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0; }
-    .media-card-title { padding: 10px 16px; font-weight: 700; font-size: 0.9rem; color: var(--brand-deep); border-bottom: 1px solid #E2E8F0; }
-    .file-attachment-box {
-      background: #FFFFFF; border: 1.5px solid var(--brand-border); border-radius: 8px;
-      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0;
+    .presentation-header {
+      background: var(--brand-deep); color: white; padding: 12px 18px;
+      display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 0.95rem;
     }
+    .presentation-slide-view {
+      padding: 24px; min-height: 240px; display: flex; flex-direction: column; justify-content: center;
+      background: #FCFDFE; text-align: center;
+    }
+    .pres-slide-img { max-height: 280px; max-width: 100%; object-fit: contain; margin: 0 auto 14px; border-radius: 8px; }
+    .pres-slide-title { font-size: 1.25rem; font-weight: 800; color: var(--brand-deep); margin-bottom: 8px; }
+    .pres-slide-text { font-size: 0.95rem; color: var(--text-main); line-height: 1.6; max-width: 780px; margin: 0 auto; }
+    .presentation-footer {
+      padding: 12px 18px; background: #F1F5F9; border-top: 1px solid #E2E8F0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .presentation-counter { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+    .presentation-dots { display: flex; gap: 6px; }
+    .pres-dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; transition: all 0.2s; }
+    .pres-dot.active { background: var(--brand-blue); width: 22px; border-radius: 4px; }
+
+    /* Тестирование */
+    .timer-container {
+      background: #FFFBEB; border: 1.5px solid #FDE68A; color: #92400E; padding: 10px 18px; border-radius: 8px;
+      display: flex; align-items: center; gap: 12px; font-size: 0.95rem; font-weight: 700; margin-bottom: 20px;
+    }
+    .timer-badge { background: #F59E0B; color: white; padding: 4px 10px; border-radius: 6px; font-family: monospace; font-size: 1.1rem; letter-spacing: 1px; }
+
+    .test-card {
+      background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 10px; padding: 18px; margin-bottom: 14px;
+      display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(11, 53, 88, 0.04);
+    }
+    .test-question-box { background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    .test-option-label {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #F8FAFD; border: 1px solid #E2E8F0;
+      border-radius: 6px; margin-top: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.15s;
+    }
+    .test-option-label:hover { background: var(--brand-light); border-color: var(--brand-blue); }
 
     /* Модальные окна */
     .modal-overlay {
@@ -323,7 +346,7 @@
     }
     .modal-overlay.active { display: flex; }
     .modal-window {
-      background: #FFFFFF; width: 100%; max-width: 780px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      background: #FFFFFF; width: 100%; max-width: 820px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.18);
       border-top: 4px solid var(--brand-blue); padding: 22px; max-height: 90vh; overflow-y: auto;
     }
     .modal-title { font-size: 1.25rem; font-weight: 700; color: var(--brand-deep); margin-bottom: 16px; }
@@ -336,7 +359,6 @@
     .form-group textarea { min-height: 80px; resize: vertical; }
     .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 
-    /* Таблицы матрицы прав */
     .vetmanager-tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--brand-border); margin-bottom: 16px; }
     .vm-tab {
       padding: 8px 16px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer;
@@ -360,7 +382,7 @@
       .btn-mobile-menu { display: inline-flex; }
       .header-search-container { display: none; }
       .header-logo-img { height: 38px; max-width: 140px; }
-      .cloud-indicator, #headerYandexBtn, #usersManageBtn, #btnUploadLogo, #btnCreateNewPageHeader, .user-info { display: none; }
+      .cloud-indicator, #headerYandexBtn, #usersManageBtn, #manageTestsBtn, #btnUploadLogo, #btnCreateNewPageHeader, .user-info { display: none; }
       .sidebar {
         position: fixed; left: 0; top: 0; bottom: 0; margin-top: 72px;
         transform: translateX(-100%); box-shadow: 4px 0 16px rgba(0,0,0,0.15);
@@ -380,7 +402,7 @@
     <div class="auth-box">
       <img id="authLogoImg" class="auth-logo-img" src="" alt="Логотип Надежда">
       <h2>Клиника «Надежда»</h2>
-      <p>Корпоративная база знаний</p>
+      <p>Корпоративная база знаний и обучение</p>
       
       <form class="auth-form" onsubmit="handleLogin(event)">
         <label>Логин или Email</label>
@@ -406,7 +428,7 @@
       </div>
     </div>
 
-    <!-- ИИ Поиск -->
+    <!-- Поиск -->
     <div class="header-search-container">
       <div class="header-search">
         <input type="text" id="searchInput" placeholder="ИИ поиск: «у кота судороги», «наркоз диета»..." onkeydown="handleSearchKeyDown(event)">
@@ -423,6 +445,10 @@
         + Новая страница
       </button>
 
+      <button class="btn btn-outline" id="manageTestsBtn" style="display:none;" onclick="openManageTestsModal()">
+        📝 Конструктор тестов
+      </button>
+
       <button class="btn btn-outline" id="btnUploadLogo" style="display:none;" onclick="document.getElementById('logoFileInput').click()" title="Загрузить изображение логотипа">
         🖼️ Сменить логотип
       </button>
@@ -437,7 +463,10 @@
       </a>
       
       <div class="user-profile-badge">
-        <div class="user-avatar" id="headerAvatar">?</div>
+        <div class="avatar-wrapper" onclick="openDoc('my_tests')" title="Мои тестирования">
+          <div class="user-avatar" id="headerAvatar">?</div>
+          <div class="tests-badge-counter" id="headerTestsBadge" style="display:none;">0</div>
+        </div>
         <div class="user-info">
           <div class="user-name" id="headerName">Имя</div>
           <div class="user-role" id="headerRole">Должность</div>
@@ -466,8 +495,8 @@
     <div class="content-wrap" id="documentArea"></div>
   </main>
 
-  <!-- МОДАЛЬНЫЕ ОКНА КОНСТРУКТОРА -->
-  <!-- 1. Создание/редактирование страницы -->
+  <!-- МОДАЛЬНЫЕ ОКНА -->
+  <!-- 1. Создание страницы -->
   <div class="modal-overlay" id="pageRecordModal">
     <div class="modal-window">
       <div class="modal-title" id="pageRecordModalTitle">Создание новой страницы регламента / обучения</div>
@@ -475,12 +504,12 @@
       
       <div class="form-group">
         <label>Название страницы</label>
-        <input type="text" id="newPageRecordTitle" placeholder="Протокол дезинфекции операционной...">
+        <input type="text" id="newPageRecordTitle" placeholder="Протокол реанимации ОРИТ...">
       </div>
 
       <div class="form-group">
         <label>Раздел / Отделение</label>
-        <input type="text" id="newPageRecordCategory" placeholder="ХИРУРГИЯ И ОПЕРБЛОК">
+        <input type="text" id="newPageRecordCategory" placeholder="АНЕСТЕЗИОЛОГИЯ И РЕАНИМАЦИЯ">
       </div>
 
       <div class="form-group" style="display:flex; align-items:center; gap:10px; background:#F8FAFD; padding:12px; border-radius:8px; border:1px solid #E2E8F0;">
@@ -541,7 +570,7 @@
     </div>
   </div>
 
-  <!-- 3. Реестр «Все существующие страницы» -->
+  <!-- 3. Реестр всех страниц -->
   <div class="modal-overlay" id="allPagesModal">
     <div class="modal-window" style="max-width: 860px;">
       <div class="modal-title">Все существующие страницы базы знаний</div>
@@ -566,7 +595,7 @@
     </div>
   </div>
 
-  <!-- 4. Добавление пункта статьи (включая Выпадающую вкладку) -->
+  <!-- 4. Добавление пункта статьи (Текст, Чек-лист, Слайд-презентация, Выпадающая вкладка, Видео, Фото) -->
   <div class="modal-overlay" id="articleBlockModal">
     <div class="modal-window">
       <div class="modal-title" id="articleBlockModalTitle">Пункт регламента / Материал обучения</div>
@@ -576,6 +605,7 @@
         <label>Тип материала</label>
         <select id="articleBlockTypeSelect" onchange="toggleArticleBlockFields()">
           <option value="banner">Текстовый регламент / Теория</option>
+          <option value="presentation">📊 Интерактивная слайд-презентация (Слайдер)</option>
           <option value="checklist">Контрольный чек-лист</option>
           <option value="accordion">🔽 Выпадающая вкладка (Спойлер с вложенными страницами)</option>
           <option value="image">Изображение / Инфографика / Фото</option>
@@ -585,13 +615,22 @@
       </div>
 
       <div class="form-group">
-        <label>Заголовок блока / Название вкладки</label>
+        <label id="lblBlockTitle">Заголовок блока</label>
         <input type="text" id="articleBlockTitleInput">
       </div>
 
       <div class="form-group" id="grpBlockText">
         <label id="lblBlockText">Текст описания / Инструкция</label>
-        <textarea id="articleBlockTextInput" style="min-height:120px;"></textarea>
+        <textarea id="articleBlockTextInput" style="min-height:110px;"></textarea>
+      </div>
+
+      <!-- Конструктор слайдов презентации -->
+      <div class="form-group" id="grpBlockPresentation" style="display:none; background:#F8FAFD; border:1.5px solid var(--brand-border); padding:14px; border-radius:8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <strong style="color:var(--brand-deep); font-size:0.85rem;">Слайды презентации:</strong>
+          <button type="button" class="btn btn-outline" style="font-size:0.75rem; padding:3px 8px;" onclick="addSlideToPresentationBuilder()">+ Добавить слайд</button>
+        </div>
+        <div id="presentationSlidesBuilderList"></div>
       </div>
 
       <div class="form-group" id="grpBlockUrl" style="display:none;">
@@ -612,7 +651,83 @@
     </div>
   </div>
 
-  <!-- 5. МОДАЛЬНОЕ ОКНО: СОТРУДНИКИ И ДОПУСК ПО РОЛЯМ -->
+  <!-- 5. Конструктор тестирования -->
+  <div class="modal-overlay" id="manageTestsModal">
+    <div class="modal-window" style="max-width: 860px;">
+      <div class="modal-title">Управление аттестацией и тестами</div>
+      <div style="display:flex; gap:10px; margin-bottom:16px;">
+        <button class="btn btn-primary" onclick="openCreateTestModal()">+ Создать тест</button>
+        <button class="btn btn-outline" onclick="openResultsLogModal()">📊 Журнал сдачи</button>
+      </div>
+      <table class="styled-table" style="margin-top:0;">
+        <thead><tr><th>Название теста</th><th>Кому назначен</th><th>Время</th><th>Проходной %</th><th>Действия</th></tr></thead>
+        <tbody id="testsTableBody"></tbody>
+      </table>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="document.getElementById('manageTestsModal').classList.remove('active')">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Окно создания теста -->
+  <div class="modal-overlay" id="createTestModal" style="z-index: 2800;">
+    <div class="modal-window">
+      <div class="modal-title">Настройка аттестационного теста</div>
+      <div class="form-group"><label>Название аттестации</label><input type="text" id="newTestTitle" placeholder="Аттестация по триажу..."></div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        <div class="form-group">
+          <label>Кому назначить</label>
+          <select id="newTestTargetType" onchange="toggleTestTargetSelect()">
+            <option value="user">Персонально сотруднику</option>
+            <option value="role">Всему отделу / должности</option>
+          </select>
+        </div>
+        <div class="form-group" id="targetUserGroup"><label>Сотрудник</label><select id="newTestTargetUser"></select></div>
+        <div class="form-group" id="targetRoleGroup" style="display:none;"><label>Должность</label>
+          <select id="newTestTargetRole">
+            <option value="operator">Всем операторам колл-центра</option>
+            <option value="reception">Всем администраторам рецепции</option>
+            <option value="assistant">Всем ассистентам</option>
+            <option value="doctor">Всем врачам-терапевтам</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        <div class="form-group"><label>Тайминг сдачи (минут)</label><input type="number" id="newTestTimeLimit" value="10"></div>
+        <div class="form-group"><label>Проходной %</label><input type="number" id="newTestPassingScore" value="80"></div>
+      </div>
+
+      <hr style="border:0; border-top:1px solid var(--brand-border); margin:14px 0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="font-size:0.88rem; color:var(--brand-deep);">Вопросы теста:</strong>
+        <button class="btn btn-outline" type="button" onclick="addQuestionToTestBuilder()">+ Добавить вопрос</button>
+      </div>
+      <div id="testQuestionsBuilderList"></div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="document.getElementById('createTestModal').classList.remove('active')">Отмена</button>
+        <button class="btn btn-primary" onclick="saveNewTest()">Назначить тестирование</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Журнал сдачи -->
+  <div class="modal-overlay" id="resultsLogModal" style="z-index: 2900;">
+    <div class="modal-window">
+      <div class="modal-title">Журнал результатов тестирования</div>
+      <table class="styled-table" style="margin-top:0;">
+        <thead><tr><th>Дата</th><th>Сотрудник</th><th>Тест</th><th>Балл</th><th>Статус</th></tr></thead>
+        <tbody id="resultsTableBody"></tbody>
+      </table>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="document.getElementById('resultsLogModal').classList.remove('active')">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. МОДАЛЬНОЕ ОКНО: СОТРУДНИКИ И ДОПУСК ПО РОЛЯМ -->
   <div class="modal-overlay" id="usersModal">
     <div class="modal-window" style="max-width: 860px;">
       <div class="modal-title">Сотрудники клиники и допуск к разделам</div>
@@ -656,16 +771,16 @@
     </div>
   </div>
 
-  <!-- Создание нового пользователя -->
+  <!-- Создание нового пользователя с АВТОМАТИЧЕСКИМ НАЗНАЧЕНИЕМ ОБУЧЕНИЯ И ТЕСТОВ -->
   <div class="modal-overlay" id="newUserModal" style="z-index: 2900;">
-    <div class="modal-window" style="max-width: 440px;">
-      <div class="modal-title">Новый сотрудник</div>
-      <div class="form-group"><label>ФИО</label><input type="text" id="newFullName" required></div>
+    <div class="modal-window" style="max-width: 520px;">
+      <div class="modal-title">Новый сотрудник клиники</div>
+      <div class="form-group"><label>ФИО</label><input type="text" id="newFullName" placeholder="Иванова Екатерина" required></div>
       <div class="form-group"><label>Email</label><input type="email" id="newEmail" placeholder="employee@mail.ru" required></div>
       <div class="form-group"><label>Логин</label><input type="text" id="newUsername" required></div>
       <div class="form-group"><label>Пароль</label><input type="password" id="newPassword" required></div>
       <div class="form-group">
-        <label>Роль в системе</label>
+        <label>Должность в клинике</label>
         <select id="newRole">
           <option value="operator">Оператор колл-центра</option>
           <option value="reception">Администратор рецепции</option>
@@ -675,6 +790,22 @@
           <option value="admin">Управляющий (Полный доступ)</option>
         </select>
       </div>
+
+      <!-- Блок автоназначения обучения и тестов -->
+      <div class="form-group" style="background:var(--brand-light); border:1.5px solid var(--brand-border); padding:12px; border-radius:8px;">
+        <label style="color:var(--brand-deep); font-weight:800; font-size:0.82rem;">Автоматическое назначение при создании:</label>
+        <div style="margin-top:6px;">
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; cursor:pointer; margin-bottom:4px;">
+            <input type="checkbox" id="autoAssignIntroTest" checked style="width:16px; height:16px; accent-color:var(--brand-blue);">
+            <span>Назначить вступительный тест по триажу</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" id="autoAssignTrainingTrack" checked style="width:16px; height:16px; accent-color:var(--brand-blue);">
+            <span>Прикрепить вводный курс адаптации и регламентов</span>
+          </label>
+        </div>
+      </div>
+
       <div class="modal-actions">
         <button class="btn btn-outline" onclick="document.getElementById('newUserModal').classList.remove('active')">Отмена</button>
         <button class="btn btn-primary" onclick="saveNewUser()">Зарегистрировать</button>
@@ -714,6 +845,22 @@
       { id: "u_head", fullName: "Елена Валерьевна", email: "head@nadezhda.vet", username: "head_med", password: "1234", role: "head", roleName: "Заведующая отделением" }
     ];
 
+    const DEFAULT_TESTS = [
+      {
+        id: "test_triage",
+        title: "Вступительный тест: Триаж экстренных состояний",
+        targetType: "role",
+        targetVal: "operator",
+        targetName: "Операторы колл-центра",
+        timeLimit: 10,
+        passingScore: 80,
+        questions: [
+          { text: "К какой категории относится кошка с дыханием через открытый рот?", options: ["Красная (Срочно)", "Желтая", "Зеленая"], correct: 0 },
+          { text: "Действие администратора/оператора при подозрении на заворот желудка:", options: ["Оформить договор", "Немедленно позвать врача и приготовить бокс", "Поставить в общую очередь"], correct: 1 }
+        ]
+      }
+    ];
+
     const VM_MODULES = [
       { id: "mod_callcenter", name: "Колл-центр и операторы" },
       { id: "mod_heads", name: "Заведующие отделениями" },
@@ -727,7 +874,7 @@
       { id: "mod_laboratory", name: "Лаборатория" }
     ];
 
-    /* СТРАНИЦЫ БАЗЫ ЗНАНИЙ (С ВЫПАДАЮЩИМИ ВКЛАДКАМИ) */
+    /* СТРАНИЦЫ БАЗЫ ЗНАНИЙ (С ПОДДЕРЖКОЙ СЛАЙД-ПРЕЗЕНТАЦИЙ И ВЫПАДАЮЩИХ ВКЛАДОК) */
     const DEFAULT_PAGES = [
       {
         id: "home",
@@ -748,6 +895,15 @@
         showInSidebar: true,
         blocks: [
           { type: "banner", title: "Золотое правило оператора", text: "Снятие трубки до третьего гудка. Всегда уточняйте наличие экстренных симптомов у питомца в первые 30 секунд разговора." },
+          { 
+            type: "presentation",
+            title: "Обучающая презентация: Этапы телефонного триажа",
+            slides: [
+              { title: "Слайд 1: Первый контакт", text: "Приветствие по корпоративному стандарту, уточнение клички и возраста пациента.", img: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1000&auto=format&fit=crop&q=80" },
+              { title: "Слайд 2: Красная категория", text: "Одышка с открытым ртом, судороги свыше 2 минут, профузное кровотечение — пациент принимается вне очереди!", img: "" },
+              { title: "Слайд 3: Подготовка стационара", text: "Оператор по рации предупреждает процедурного врача и команду ОРИТ до приезда владельца.", img: "" }
+            ]
+          },
           { 
             type: "checklist", 
             title: "Контрольный чек-лист звонка", 
@@ -778,34 +934,44 @@
         badge: "Оперблок",
         showInSidebar: false,
         blocks: [
-          { type: "banner", title: "Предоперационная подготовка", text: "Животные брахицефалических пород и пациенты старше 6 лет допускаются строго после ЭхоКГ сердца." },
-          { type: "image", title: "Схема фиксации пациента на операционном столе", url: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1000&auto=format&fit=crop&q=80" }
+          { type: "banner", title: "Предоперационная подготовка", text: "Животные брахицефалических пород и пациенты старше 6 лет допускаются строго после ЭхоКГ сердца." }
         ]
       }
     ];
 
-    /* КАРТОЧКИ НА ГЛАВНОЙ */
     const DEFAULT_DASH_CARDS = [
       { id: "c_operators", title: "Колл-центр и операторы", desc: "Скрипты консультаций, запись к узким специалистам, триаж.", icon: "🎧", pageId: "page_operators", color: "linear-gradient(135deg, #0088D4, #00A6FF)" },
       { id: "c_heads", title: "Заведующие отделениями", desc: "Контроль историй болезни, аудит смен, консилиумы.", icon: "🏛️", pageId: "page_heads", color: "linear-gradient(135deg, #0B3558, #185285)" },
       { id: "c_surgery", title: "Хирургия и оперблок", desc: "Предоперационный чек-лист, наркозный протокол, стерилизация.", icon: "🔪", pageId: "page_surgery", color: "linear-gradient(135deg, #0F766E, #14B8A6)" }
     ];
 
-    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v90')) || DEFAULT_PAGES;
-    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v90')) || DEFAULT_DASH_CARDS;
-    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v90')) || DEFAULT_USERS;
-    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v90')) || {};
+    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v100')) || DEFAULT_PAGES;
+    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v100')) || DEFAULT_DASH_CARDS;
+    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v100')) || DEFAULT_USERS;
+    let testsList = JSON.parse(localStorage.getItem('nadezhda_tests_v100')) || DEFAULT_TESTS;
+    let testResults = JSON.parse(localStorage.getItem('nadezhda_test_results_v100')) || [];
+    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v100')) || {};
     let customLogo = localStorage.getItem('nadezhda_uploaded_logo') || DEFAULT_LOGO_DATA_URL;
 
     let currentUser = JSON.parse(sessionStorage.getItem('nadezhda_active_user')) || null;
     let currentPageId = "home";
     let navHistory = [];
+    let builderQuestions = [];
+    let builderSlides = [];
+
+    // Таймер тестирования
+    let activeTestTimerInterval = null;
+    let activeTestSecondsLeft = 0;
+    let activeTestTotalSeconds = 0;
+
+    // Состояния слайдеров презентаций
+    let presentationStates = {};
 
     /* ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ */
     function syncToCloud(key, data) {
-      localStorage.setItem('nadezhda_' + key + '_v90', JSON.stringify(data));
+      localStorage.setItem('nadezhda_' + key + '_v100', JSON.stringify(data));
       if (firebaseDb && isCloudOnline) {
-        firebaseDb.ref(key + '_v90').set(data).catch(e => console.error("Firebase write error:", e));
+        firebaseDb.ref(key + '_v100').set(data).catch(e => console.error("Firebase write error:", e));
       }
     }
 
@@ -816,10 +982,12 @@
         return;
       }
 
-      firebaseDb.ref('pages_v90').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
-      firebaseDb.ref('cards_v90').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
-      firebaseDb.ref('users_v90').on('value', s => { if (s.val()) { usersList = s.val(); } });
-      firebaseDb.ref('perms_v90').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
+      firebaseDb.ref('pages_v100').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
+      firebaseDb.ref('cards_v100').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
+      firebaseDb.ref('users_v100').on('value', s => { if (s.val()) { usersList = s.val(); updateHeaderPendingTests(); } });
+      firebaseDb.ref('tests_v100').on('value', s => { if (s.val()) { testsList = s.val(); updateHeaderPendingTests(); } });
+      firebaseDb.ref('results_v100').on('value', s => { if (s.val()) { testResults = s.val(); updateHeaderPendingTests(); } });
+      firebaseDb.ref('perms_v100').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
       firebaseDb.ref('logo').on('value', s => { if (s.val()) { customLogo = s.val(); applyCurrentLogo(); } });
     }
 
@@ -851,7 +1019,7 @@
         localStorage.setItem('nadezhda_uploaded_logo', customLogo);
         if (firebaseDb && isCloudOnline) firebaseDb.ref('logo').set(customLogo);
         applyCurrentLogo();
-        alert('Логотип клиники успешно обновлен!');
+        alert('Логотип клиники обновлен!');
       };
       reader.readAsDataURL(file);
     }
@@ -879,7 +1047,7 @@
       let targetList = usersList;
       if (firebaseDb && isCloudOnline) {
         try {
-          const snap = await firebaseDb.ref('users_v90').once('value');
+          const snap = await firebaseDb.ref('users_v100').once('value');
           if (snap.val()) targetList = snap.val();
         } catch(err) {}
       }
@@ -910,6 +1078,34 @@
       location.reload();
     }
 
+    function getPendingTestsCount() {
+      if (!currentUser) return 0;
+      const myAssigned = testsList.filter(t => {
+        if (t.targetType === 'user' && t.targetVal === currentUser.id) return true;
+        if (t.targetType === 'role' && t.targetVal === currentUser.role) return true;
+        return false;
+      });
+      let pending = 0;
+      myAssigned.forEach(t => {
+        const passedResult = testResults.find(r => r.testId === t.id && r.userId === currentUser.id && r.passed);
+        if (!passedResult) pending++;
+      });
+      return pending;
+    }
+
+    function updateHeaderPendingTests() {
+      const p = getPendingTestsCount();
+      const badge = document.getElementById('headerTestsBadge');
+      if (badge) {
+        if (p > 0) {
+          badge.innerText = p;
+          badge.style.display = 'flex';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+    }
+
     function applyUserSession() {
       document.getElementById('headerName').innerText = currentUser.fullName;
       document.getElementById('headerRole').innerText = currentUser.roleName;
@@ -917,21 +1113,28 @@
 
       const canManage = currentUser.role === 'admin' || currentUser.role === 'head';
       document.getElementById('usersManageBtn').style.display = canManage ? 'inline-flex' : 'none';
+      document.getElementById('manageTestsBtn').style.display = canManage ? 'inline-flex' : 'none';
       document.getElementById('btnCreateNewPageHeader').style.display = canManage ? 'inline-flex' : 'none';
       document.getElementById('btnUploadLogo').style.display = (currentUser.role === 'admin') ? 'inline-flex' : 'none';
       document.getElementById('adminSidebarFooter').style.display = canManage ? 'block' : 'none';
+
+      updateHeaderPendingTests();
     }
 
-    /* САЙДБАР (СКРЫТИЕ И ВЫБОРОЧНЫЙ ПОКАЗ СТРАНИЦ) */
+    /* САЙДБАР */
     function renderSidebar() {
       const nav = document.getElementById('navContainer');
       nav.innerHTML = '';
       const canManage = currentUser && (currentUser.role === 'admin' || currentUser.role === 'head');
 
+      const pendingTests = getPendingTestsCount();
       const testItem = document.createElement('div');
       testItem.className = `nav-item ${currentPageId === 'my_tests' ? 'active' : ''}`;
       testItem.onclick = () => { openDoc('my_tests'); if (window.innerWidth <= 900) toggleMobileSidebar(); };
-      testItem.innerHTML = `<span class="nav-item-title">🎓 Мои тестирования</span>`;
+      testItem.innerHTML = `
+        <span class="nav-item-title">🎓 Мои тестирования</span>
+        ${pendingTests > 0 ? `<span class="tag tag-blue" style="background:var(--accent-red-bg); color:var(--accent-red); font-weight:800;">${pendingTests}</span>` : ''}
+      `;
       nav.appendChild(testItem);
 
       const pagesToDisplay = pagesList.filter(p => {
@@ -971,8 +1174,7 @@
           const hiddenBadge = (canManage && !p.showInSidebar && p.id !== 'home') ? `<span class="nav-hidden-badge">скрыто</span>` : '';
 
           item.innerHTML = `
-            <span class="nav-item-title" title="${p.title}">${p.title} ${hiddenBadge}</span>
-            ${hideControl}
+            <span class="nav-item-title" title="${p.title}">${p.title} ${hiddenBadge}</span>${hideControl}
           `;
           section.appendChild(item);
         });
@@ -985,7 +1187,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = !page.showInSidebar;
-        syncToCloud('pages_v90', pagesList);
+        syncToCloud('pages_v100', pagesList);
         renderSidebar();
       }
     }
@@ -1010,8 +1212,8 @@
           ]
         });
         card.pageId = targetPageId;
-        syncToCloud('pages_v90', pagesList);
-        syncToCloud('cards_v90', dashCards);
+        syncToCloud('pages_v100', pagesList);
+        syncToCloud('cards_v100', dashCards);
       }
 
       openDoc(targetPageId);
@@ -1019,6 +1221,7 @@
 
     /* НАВИГАЦИЯ */
     function openDoc(pageId, isBackAction = false) {
+      clearInterval(activeTestTimerInterval);
       if (!isBackAction && currentPageId && currentPageId !== pageId) {
         navHistory.push(currentPageId);
       }
@@ -1044,10 +1247,27 @@
       });
     }
 
-    /* РАСКРЫТИЕ ВЫПАДАЮЩЕЙ ВКЛАДКИ (СПОЙЛЕРА) */
     function toggleAccordion(headerEl) {
       const block = headerEl.closest('.accordion-block');
       block.classList.toggle('open');
+    }
+
+    /* УПРАВЛЕНИЕ СЛАЙДАМИ ПРЕЗЕНТАЦИИ */
+    function prevSlide(presId, totalSlides) {
+      presentationStates[presId] = presentationStates[presId] || 0;
+      presentationStates[presId] = (presentationStates[presId] - 1 + totalSlides) % totalSlides;
+      renderPage(currentPageId);
+    }
+
+    function nextSlide(presId, totalSlides) {
+      presentationStates[presId] = presentationStates[presId] || 0;
+      presentationStates[presId] = (presentationStates[presId] + 1) % totalSlides;
+      renderPage(currentPageId);
+    }
+
+    function goToSlide(presId, slideIndex) {
+      presentationStates[presId] = slideIndex;
+      renderPage(currentPageId);
     }
 
     /* КАРТОЧКИ НА ГЛАВНОЙ */
@@ -1058,7 +1278,7 @@
       const temp = dashCards[index];
       dashCards[index] = dashCards[newIndex];
       dashCards[newIndex] = temp;
-      syncToCloud('cards_v90', dashCards);
+      syncToCloud('cards_v100', dashCards);
       renderPage('home');
     }
 
@@ -1088,8 +1308,8 @@
         color: original.color
       });
 
-      syncToCloud('pages_v90', pagesList);
-      syncToCloud('cards_v90', dashCards);
+      syncToCloud('pages_v100', pagesList);
+      syncToCloud('cards_v100', dashCards);
       renderPage('home');
     }
 
@@ -1101,7 +1321,7 @@
       const temp = page.blocks[index];
       page.blocks[index] = page.blocks[newIndex];
       page.blocks[newIndex] = temp;
-      syncToCloud('pages_v90', pagesList);
+      syncToCloud('pages_v100', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1111,7 +1331,7 @@
       const copy = JSON.parse(JSON.stringify(page.blocks[index]));
       copy.title = (copy.title || '') + ' (Копия)';
       page.blocks.splice(index + 1, 0, copy);
-      syncToCloud('pages_v90', pagesList);
+      syncToCloud('pages_v100', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1153,12 +1373,18 @@
       `;
     }
 
-    /* РЕНДЕР СТРАНИЦЫ С ВЫПАДАЮЩИМИ ВКЛАДКАМИ */
+    /* РЕНДЕР СТРАНИЦЫ (ВКЛЮЧАЯ ЭКРАН ТЕСТИРОВАНИЯ И ПРЕЗЕНТАЦИИ) */
     function renderPage(pageId) {
       const area = document.getElementById('documentArea');
       const canEdit = currentUser && (currentUser.role === 'admin' || currentUser.role === 'head');
 
-      // 1. Главная страница
+      // 1. Экран тестирований сотрудника
+      if (pageId === 'my_tests') {
+        renderMyTestsScreen(area);
+        return;
+      }
+
+      // 2. Главная страница
       if (pageId === 'home') {
         const cardsHtml = dashCards.map((c, idx) => {
           const editTools = canEdit ? `
@@ -1174,7 +1400,7 @@
           return `
             <div class="dash-card" onclick="handleCardClick('${c.id}')">
               ${editTools}
-              <div class="dash-card-img" style="background:${c.color || 'var(--brand-blue)'};">${c.icon || '📌'}</div>
+              <div class="dash-card-img" style="background:${c.color \vert{}\vert{} 'var(--brand-blue)'};">${c.icon || '📌'}</div>
               <div class="dash-card-content">
                 <div class="dash-card-title">${c.title}</div>
                 <div class="dash-card-desc">${c.desc}</div>
@@ -1214,7 +1440,7 @@
         return;
       }
 
-      // 2. Внутренняя страница
+      // 3. Страница конкретного регламента
       const page = pagesList.find(p => p.id === pageId) || pagesList[0];
 
       let blocksHtml = (page.blocks || []).map((b, idx) => {
@@ -1230,8 +1456,39 @@
 
         let contentHtml = '';
 
-        // ВЫПАДАЮЩАЯ ВКЛАДКА (АККОРДЕОН)
-        if (b.type === 'accordion') {
+        // ИНТЕРАКТИВНАЯ ПРЕЗЕНТАЦИЯ (СЛАЙДЕР С ПЕРЕМОТКОЙ)
+        if (b.type === 'presentation') {
+          const slides = b.slides || [
+            { title: "Слайд 1", text: "Содержание презентации...", img: "" }
+          ];
+          const presId = 'pres_' + page.id + '_' + idx;
+          const currentSlideIdx = presentationStates[presId] || 0;
+          const currentSlide = slides[currentSlideIdx] || slides[0];
+
+          const dotsHtml = slides.map((s, sIdx) => `
+            <div class="pres-dot ${sIdx === currentSlideIdx ? 'active' : ''}" onclick="goToSlide('${presId}',${sIdx})" style="cursor:pointer;"></div>
+          `).join('');
+
+          contentHtml = `
+            <div class="presentation-card">
+              <div class="presentation-header">
+                <span>📊 ${b.title || 'Обучающая презентация'}</span>
+                <span>Слайд ${currentSlideIdx + 1} из ${slides.length}</span>
+              </div>
+              <div class="presentation-slide-view">
+                ${currentSlide.img ? `<img src="${currentSlide.img}" class="pres-slide-img" alt="Слайд">` : ''}
+                <div class="pres-slide-title">${currentSlide.title || ''}</div>
+                <div class="pres-slide-text">${parseInternalWikiLinks(currentSlide.text || '')}</div>
+              </div>
+              <div class="presentation-footer">
+                <button class="btn btn-outline" style="padding:6px 14px;" onclick="prevSlide('${presId}',${slides.length})">◀ Предыдущий</button>
+                <div class="presentation-dots">${dotsHtml}</div>
+                <button class="btn btn-primary" style="padding:6px 14px;" onclick="nextSlide('${presId}',${slides.length})">Следующий ▶</button>
+              </div>
+            </div>
+          `;
+        }
+        else if (b.type === 'accordion') {
           const attached = (b.attachedPages || []).map(pId => pagesList.find(x => x.id === pId)).filter(Boolean);
           const attachedButtonsHtml = attached.map(ap => `
             <div class="accordion-page-btn" onclick="openDoc('${ap.id}')">
@@ -1254,7 +1511,7 @@
                 ` : ''}
                 ${canEdit ? `
                   <div style="margin-top:14px;">
-                    <button class="btn btn-outline" style="font-size:0.75rem; padding:4px 8px;" onclick="openCreatePageRecordModal('${page.category || 'ОБЩИЕ СВЕДЕНИЯ'}')">+ Создать новую страницу для этой вкладки</button>
+                    <button class="btn btn-outline" style="font-size:0.75rem; padding:4px 8px;" onclick="openCreatePageRecordModal('${page.category || 'ОБЩИЕ СВЕДЕНИЯ'}')">+ Создать страницу для этой вкладки</button>
                   </div>
                 ` : ''}
               </div>
@@ -1324,7 +1581,7 @@
             </div>
           ` : ''}
         </div>
-        <div class="doc-body">${blocksHtml || '<div style="padding:24px; background:#fff; border-radius:10px; border:1px solid var(--brand-border); text-align:center; color:var(--text-muted);">На этой странице пока нет пунктов. Нажмите «+ Добавить пункт», чтобы добавить выпадающую вкладку, текст, чек-лист или видео.</div>'}</div>
+        <div class="doc-body">${blocksHtml || '<div style="padding:24px; background:#fff; border-radius:10px; border:1px solid var(--brand-border); text-align:center; color:var(--text-muted);">На этой странице пока нет пунктов. Нажмите «+ Добавить пункт», чтобы добавить презентацию, текст, чек-лист, видео или фото.</div>'}</div>
       `;
 
       area.querySelectorAll('.check-item input').forEach(input => {
@@ -1335,9 +1592,276 @@
       });
     }
 
+    /* ЭКРАН СДАЧИ ТЕСТОВ */
+    function renderMyTestsScreen(container) {
+      const myAssigned = testsList.filter(t => {
+        if (t.targetType === 'user' && t.targetVal === currentUser.id) return true;
+        if (t.targetType === 'role' && t.targetVal === currentUser.role) return true;
+        return false;
+      });
+
+      let testsHtml = '';
+      if (myAssigned.length === 0) {
+        testsHtml = `<div style="padding:30px; text-align:center; background:#fff; border-radius:10px; border:1px solid var(--brand-border);"><p style="color:var(--text-muted);">Назначенных тестов нет.</p></div>`;
+      } else {
+        testsHtml = myAssigned.map(t => {
+          const myResult = testResults.filter(r => r.testId === t.id && r.userId === currentUser.id).pop();
+          return `
+            <div class="test-card">
+              <div>
+                <h3 style="color:var(--brand-deep); margin-bottom:4px;">${t.title}</h3>
+                <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">
+                  ⏱️ Время: <strong>${t.timeLimit \vert{}\vert{} 10} мин</strong> \vert{} Вопросов: <strong>${(t.questions||[]).length}</strong> | Проходной балл: <strong>${t.passingScore}\%</strong>${myResult ? ` | Итог: <strong style="color:${myResult.passed ? 'var(--accent-green)' : 'var(--accent-red)'}">${myResult.score}% (${myResult.passed ? 'Сдано' : 'Не сдано'})</strong>` : ''}
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="startTestWithTimer('${t.id}')">
+                ${myResult ? 'Пересдать тест' : 'Начать тестирование'}
+              </button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      container.innerHTML = `
+        <div class="doc-header">
+          <div>
+            <div class="doc-nav-row"><button class="btn-back" onclick="goBackPage()">← Назад</button></div>
+            <h1 class="doc-title">Мои тестирования и аттестации</h1>
+            <div class="doc-meta"><span class="tag tag-blue">Сотрудник: ${currentUser.fullName}</span></div>
+          </div>
+        </div>
+        <div class="doc-body">${testsHtml}</div>
+      `;
+    }
+
+    function startTestWithTimer(testId) {
+      const test = testsList.find(t => t.id === testId);
+      if (!test) return;
+
+      const area = document.getElementById('documentArea');
+      const limitMinutes = test.timeLimit || 10;
+      activeTestTotalSeconds = limitMinutes * 60;
+      activeTestSecondsLeft = activeTestTotalSeconds;
+
+      let questionsHtml = (test.questions || []).map((q, qIdx) => `
+        <div class="test-question-box">
+          <div style="font-weight:700; color:var(--brand-deep); margin-bottom:12px;">Вопрос #${qIdx + 1}:${q.text}</div>
+          <div>
+            ${q.options.map((opt, optIdx) => `
+              <label class="test-option-label">
+                <input type="radio" name="q_${qIdx}" value="${optIdx}">
+                <span>${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      area.innerHTML = `
+        <div class="doc-header">
+          <div>
+            <button class="btn-back" onclick="openDoc('my_tests')">← Отмена и выход</button>
+            <h1 class="doc-title" style="margin-top:10px;">${test.title}</h1>
+          </div>
+        </div>
+        <div class="timer-container">
+          <span>⏳ Оставшееся время:</span>
+          <div class="timer-badge" id="testLiveTimer">--:--</div>
+        </div>
+        <form id="activeTestForm" onsubmit="submitTest(event, '${test.id}')">
+          ${questionsHtml}
+          <div style="margin-top:20px; display:flex; justify-content:flex-end;">
+            <button type="submit" class="btn btn-primary" style="padding:12px 24px;">Завершить тест</button>
+          </div>
+        </form>
+      `;
+
+      updateTimerDisplay();
+      activeTestTimerInterval = setInterval(() => {
+        activeTestSecondsLeft--;
+        updateTimerDisplay();
+        if (activeTestSecondsLeft <= 0) {
+          clearInterval(activeTestTimerInterval);
+          alert('⏰ Время на сдачу теста истекло!');
+          finishAndSaveTestResult(test.id, true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const el = document.getElementById('testLiveTimer');
+      if (!el) return;
+      const m = Math.floor(activeTestSecondsLeft / 60);
+      const s = activeTestSecondsLeft % 60;
+      el.innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function submitTest(e, testId) {
+      if (e) e.preventDefault();
+      clearInterval(activeTestTimerInterval);
+      finishAndSaveTestResult(testId, false);
+    }
+
+    function finishAndSaveTestResult(testId, wasTimedOut) {
+      const test = testsList.find(t => t.id === testId);
+      if (!test) return;
+
+      let correctCount = 0;
+      (test.questions || []).forEach((q, idx) => {
+        const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+        if (selected && parseInt(selected.value) === q.correct) correctCount++;
+      });
+
+      const score = Math.round((correctCount / (test.questions.length || 1)) * 100);
+      const passed = score >= test.passingScore;
+
+      testResults.push({
+        id: 'res_' + Date.now(),
+        date: new Date().toLocaleString('ru-RU'),
+        testId: test.id,
+        testTitle: test.title,
+        userId: currentUser.id,
+        userName: currentUser.fullName,
+        score: score,
+        passed: passed
+      });
+
+      syncToCloud('results_v100', testResults);
+      updateHeaderPendingTests();
+      alert(`Итог:\nБалл: ${score}\%\nСтатус: ${passed ? 'Зачёт (Сдано) ✅' : 'Не зачёт ❌'}`);
+      openDoc('my_tests');
+    }
+
+    /* УПРАВЛЕНИЕ ТЕСТАМИ (КОНСТРУКТОР) */
+    function openManageTestsModal() {
+      renderTestsTable();
+      document.getElementById('manageTestsModal').classList.add('active');
+    }
+
+    function renderTestsTable() {
+      const tbody = document.getElementById('testsTableBody');
+      tbody.innerHTML = '';
+      testsList.forEach(t => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${t.title}</strong></td>
+            <td><span class="tag tag-blue">${t.targetName || 'Отдел'}</span></td>
+            <td>${t.timeLimit || 10} мин</td>
+            <td>${t.passingScore}%</td>
+            <td><button class="btn btn-outline" style="color:var(--accent-red); padding:3px 6px;" onclick="deleteTest('${t.id}')">Удалить</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function openCreateTestModal() {
+      builderQuestions = [];
+      document.getElementById('newTestTitle').value = '';
+      document.getElementById('newTestTimeLimit').value = 10;
+      document.getElementById('newTestPassingScore').value = 80;
+
+      const userSelect = document.getElementById('newTestTargetUser');
+      userSelect.innerHTML = usersList.map(u => `<option value="${u.id}">${u.fullName} (${u.roleName})</option>`).join('');
+
+      renderBuilderQuestions();
+      toggleTestTargetSelect();
+      document.getElementById('createTestModal').classList.add('active');
+    }
+
+    function toggleTestTargetSelect() {
+      const val = document.getElementById('newTestTargetType').value;
+      document.getElementById('targetUserGroup').style.display = (val === 'user') ? 'block' : 'none';
+      document.getElementById('targetRoleGroup').style.display = (val === 'role') ? 'block' : 'none';
+    }
+
+    function addQuestionToTestBuilder() {
+      builderQuestions.push({ text: '', options: ['', '', ''], correct: 0 });
+      renderBuilderQuestions();
+    }
+
+    function renderBuilderQuestions() {
+      const c = document.getElementById('testQuestionsBuilderList');
+      c.innerHTML = '';
+      builderQuestions.forEach((q, idx) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'padding:12px; background:#F8FAFD; border:1px solid #CBD5E1; border-radius:6px; margin-bottom:10px;';
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <strong>Вопрос #${idx + 1}</strong>
+            <button type="button" class="btn-icon" style="color:var(--accent-red);" onclick="builderQuestions.splice(${idx}, 1); renderBuilderQuestions();">🗑️</button>
+          </div>
+          <input type="text" placeholder="Текст вопроса..." value="${q.text}" oninput="builderQuestions[${idx}].text = this.value" style="margin-bottom:8px;">
+          <small style="font-weight:700;">Варианты (отметьте верный):</small>
+          ${q.options.map((opt, optIdx) => `
+            <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+              <input type="radio" name="corr_q_${idx}" ${q.correct === optIdx ? 'checked' : ''} onchange="builderQuestions[${idx}].correct = ${optIdx}">
+              <input type="text" placeholder="Вариант #${optIdx + 1}" value="${opt}" oninput="builderQuestions[${idx}].options[${optIdx}] = this.value">
+            </div>
+          `).join('')}
+        `;
+        c.appendChild(item);
+      });
+    }
+
+    function saveNewTest() {
+      const title = document.getElementById('newTestTitle').value.trim();
+      const targetType = document.getElementById('newTestTargetType').value;
+      const timeLimit = parseInt(document.getElementById('newTestTimeLimit').value) || 10;
+      const passingScore = parseInt(document.getElementById('newTestPassingScore').value) || 80;
+
+      if (!title || builderQuestions.length === 0) return alert('Заполните название и вопросы!');
+
+      let targetVal = '', targetName = '';
+      if (targetType === 'user') {
+        const sel = document.getElementById('newTestTargetUser');
+        targetVal = sel.value; targetName = sel.options[sel.selectedIndex].text;
+      } else {
+        const sel = document.getElementById('newTestTargetRole');
+        targetVal = sel.value; targetName = sel.options[sel.selectedIndex].text;
+      }
+
+      testsList.push({
+        id: 'test_' + Date.now(),
+        title, targetType, targetVal, targetName, timeLimit, passingScore,
+        questions: builderQuestions
+      });
+
+      syncToCloud('tests_v100', testsList);
+      document.getElementById('createTestModal').classList.remove('active');
+      renderTestsTable();
+      updateHeaderPendingTests();
+      alert('Тест назначен!');
+    }
+
+    function deleteTest(testId) {
+      if (confirm('Удалить тест?')) {
+        testsList = testsList.filter(t => t.id !== testId);
+        syncToCloud('tests_v100', testsList);
+        renderTestsTable();
+        updateHeaderPendingTests();
+      }
+    }
+
+    function openResultsLogModal() {
+      const tbody = document.getElementById('resultsTableBody');
+      tbody.innerHTML = '';
+      testResults.slice().reverse().forEach(r => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${r.date}</td>
+            <td><strong>${r.userName}</strong></td>
+            <td>${r.testTitle}</td>
+            <td><strong>${r.score}%</strong></td>
+            <td><span class="tag ${r.passed ? 'tag-green' : 'tag'}" style="${!r.passed ? 'background:var(--accent-red-bg); color:var(--accent-red);' : ''}">${r.passed ? 'Сдано' : 'Не сдано'}</span></td>
+          </tr>
+        `;
+      });
+      document.getElementById('resultsLogModal').classList.add('active');
+    }
+
     /* УПРАВЛЕНИЕ КАРТОЧКАМИ НА ГЛАВНОЙ */
     function populatePageSelect(selectEl, selectedPageId) {
-      let html = `<option value="CREATE_NEW" style="font-weight:800; color:var(--brand-blue);">✨ + Создать новую отдельную страницу под этот блок</option>`;
+      let html = `<option value="CREATE_NEW" style="font-weight:800; color:var(--brand-blue);">✨ + Создать новую страницу под этот блок</option>`;
       pagesList.filter(p => p.id !== 'home').forEach(p => {
         html += `<option value="${p.id}" ${p.id === selectedPageId ? 'selected' : ''}>${p.title} (${p.category || 'Раздел'})</option>`;
       });
@@ -1382,7 +1906,7 @@
       const color = document.getElementById('modalColorSelect').value;
       let pageChoice = document.getElementById('modalPageSelect').value;
 
-      if (!title) return alert('Введите название направления!');
+      if (!title) return alert('Введите название!');
 
       let finalPageId = pageChoice;
 
@@ -1396,7 +1920,7 @@
           showInSidebar: false,
           blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: desc || 'Заполните содержание регламента...' }]
         });
-        syncToCloud('pages_v90', pagesList);
+        syncToCloud('pages_v100', pagesList);
       }
 
       if (id) {
@@ -1406,7 +1930,7 @@
         dashCards.push({ id: 'card_' + Date.now(), title, desc, icon, pageId: finalPageId, color });
       }
 
-      syncToCloud('cards_v90', dashCards);
+      syncToCloud('cards_v100', dashCards);
       closeModuleModal();
       renderPage('home');
       renderSidebar();
@@ -1416,12 +1940,12 @@
       if (e) e.stopPropagation();
       if (confirm('Удалить эту карточку направления?')) {
         dashCards = dashCards.filter(c => c.id !== cardId);
-        syncToCloud('cards_v90', dashCards);
+        syncToCloud('cards_v100', dashCards);
         renderPage('home');
       }
     }
 
-    /* СОЗДАНИЕ НОВОЙ СТРАНИЦЫ (КНОПКА «+ НОВАЯ СТРАНИЦА») */
+    /* СОЗДАНИЕ СТРАНИЦЫ */
     function openCreatePageRecordModal(presetCategory = '') {
       document.getElementById('editPageRecordId').value = '';
       document.getElementById('pageRecordModalTitle').innerText = 'Создать новую страницу';
@@ -1452,7 +1976,7 @@
         blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: 'Заполните содержание обучения или регламента...' }]
       });
 
-      syncToCloud('pages_v90', pagesList);
+      syncToCloud('pages_v100', pagesList);
       closePageRecordModal();
       renderSidebar();
       openDoc(newId);
@@ -1474,7 +1998,7 @@
 
         tbody.innerHTML += `
           <tr>
-            <td><strong>${p.title}</strong> ${attachedCard ? `<br><small style="color:var(--brand-blue);">🔗 Карточка: ${attachedCard.title}</small>` : ''}</td>
+            <td><strong>${p.title}</strong>${attachedCard ? `<br><small style="color:var(--brand-blue);">🔗 Карточка: ${attachedCard.title}</small>` : ''}</td>
             <td><span class="tag tag-blue">${p.category || '—'}</span></td>
             <td style="text-align:center;">
               ${isHome ? 'Всегда' : `
@@ -1494,7 +2018,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = isChecked;
-        syncToCloud('pages_v90', pagesList);
+        syncToCloud('pages_v100', pagesList);
         renderSidebar();
       }
     }
@@ -1506,253 +2030,30 @@
         dashCards.forEach(c => {
           if (c.pageId === pageId) c.pageId = 'home';
         });
-        syncToCloud('pages_v90', pagesList);
-        syncToCloud('cards_v90', dashCards);
+        syncToCloud('pages_v100', pagesList);
+        syncToCloud('cards_v100', dashCards);
         renderSidebar();
         if (document.getElementById('allPagesModal').classList.contains('active')) renderAllPagesTable();
         openDoc('home');
       }
     }
 
-    /* РЕДАКТИРОВАНИЕ ПУНКТОВ РЕГЛАМЕНТА */
-    function toggleArticleBlockFields() {
-      const type = document.getElementById('articleBlockTypeSelect').value;
-      const grpUrl = document.getElementById('grpBlockUrl');
-      const grpAccPages = document.getElementById('grpBlockAccordionPages');
-      const lblText = document.getElementById('lblBlockText');
-
-      grpUrl.style.display = (type === 'image' || type === 'video' || type === 'file') ? 'block' : 'none';
-      grpAccPages.style.display = (type === 'accordion') ? 'block' : 'none';
-
-      if (type === 'accordion') {
-        lblText.innerText = 'Текст внутри выпадающей вкладки (описание/вводная часть)';
-      } else {
-        lblText.innerText = 'Текст описания / Инструкция';
-      }
+    /* КОНСТРУКТОР СЛАЙДОВ ПРЕЗЕНТАЦИИ */
+    function addSlideToPresentationBuilder() {
+      builderSlides.push({ title: 'Новый слайд', text: '', img: '' });
+      renderPresentationSlidesBuilder();
     }
 
-    function renderAccordionPagesCheckboxes(selectedPageIds = []) {
-      const container = document.getElementById('accordionPagesCheckboxList');
-      container.innerHTML = pagesList.filter(p => p.id !== 'home' && p.id !== currentPageId).map(p => `
-        <label style="display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.85rem; cursor:pointer;">
-          <input type="checkbox" value="${p.id}" ${selectedPageIds.includes(p.id) ? 'checked' : ''} class="acc-page-chk" style="width:16px; height:16px; accent-color:var(--brand-blue);">
-          <span>${p.title} (${p.category || 'Раздел'})</span>
-        </label>
-      `).join('');
-    }
-
-    function openCreateArticleBlockModal() {
-      document.getElementById('articleBlockIndex').value = '';
-      document.getElementById('articleBlockModalTitle').innerText = 'Добавить новый пункт регламента';
-      document.getElementById('articleBlockTitleInput').value = '';
-      document.getElementById('articleBlockTextInput').value = '';
-      document.getElementById('articleBlockUrlInput').value = '';
-      document.getElementById('articleBlockTypeSelect').value = 'banner';
-      renderAccordionPagesCheckboxes([]);
-      toggleArticleBlockFields();
-      document.getElementById('articleBlockModal').classList.add('active');
-    }
-
-    function openEditArticleBlockModal(idx) {
-      const page = pagesList.find(p => p.id === currentPageId);
-      if (!page || !page.blocks[idx]) return;
-      const b = page.blocks[idx];
-
-      document.getElementById('articleBlockIndex').value = idx;
-      document.getElementById('articleBlockModalTitle').innerText = 'Редактировать пункт';
-      document.getElementById('articleBlockTypeSelect').value = b.type || 'banner';
-      document.getElementById('articleBlockTitleInput').value = b.title || '';
-      document.getElementById('articleBlockTextInput').value = b.text || (b.items ? b.items.join('\n') : '');
-      document.getElementById('articleBlockUrlInput').value = b.url || '';
-      
-      renderAccordionPagesCheckboxes(b.attachedPages || []);
-      toggleArticleBlockFields();
-      document.getElementById('articleBlockModal').classList.add('active');
-    }
-
-    function closeArticleBlockModal() {
-      document.getElementById('articleBlockModal').classList.remove('active');
-    }
-
-    function saveArticleBlock() {
-      const page = pagesList.find(p => p.id === currentPageId);
-      if (!page) return;
-
-      const idxStr = document.getElementById('articleBlockIndex').value;
-      const type = document.getElementById('articleBlockTypeSelect').value;
-      const title = document.getElementById('articleBlockTitleInput').value.trim();
-      const text = document.getElementById('articleBlockTextInput').value;
-      const url = document.getElementById('articleBlockUrlInput').value.trim();
-
-      page.blocks = page.blocks || [];
-
-      const newBlock = { type, title, text, url };
-
-      if (type === 'checklist') {
-        newBlock.items = text.split('\n').filter(x => x.trim());
-      } else if (type === 'accordion') {
-        const checkedPages = [];
-        document.querySelectorAll('.acc-page-chk:checked').forEach(c => checkedPages.push(c.value));
-        newBlock.attachedPages = checkedPages;
-      }
-
-      if (idxStr !== '') {
-        page.blocks[parseInt(idxStr)] = newBlock;
-      } else {
-        page.blocks.push(newBlock);
-      }
-
-      syncToCloud('pages_v90', pagesList);
-      closeArticleBlockModal();
-      renderPage(currentPageId);
-    }
-
-    function deleteArticleBlock(idx) {
-      const page = pagesList.find(p => p.id === currentPageId);
-      if (!page) return;
-      if (confirm('Удалить этот пункт?')) {
-        page.blocks.splice(idx, 1);
-        syncToCloud('pages_v90', pagesList);
-        renderPage(currentPageId);
-      }
-    }
-
-    /* ПОЛЬЗОВАТЕЛИ И МАТРИЦА ПРАВ ПО РОЛЯМ */
-    function openUsersModal() {
-      renderRolePermissionsMatrix();
-      renderUsersTable();
-      document.getElementById('usersModal').classList.add('active');
-    }
-    function closeUsersModal() { document.getElementById('usersModal').classList.remove('active'); }
-
-    function switchVmTab(tab) {
-      document.getElementById('tabRolesBtn').classList.toggle('active', tab === 'roles');
-      document.getElementById('tabUsersBtn').classList.toggle('active', tab === 'users');
-      document.getElementById('vmRolesTabContent').style.display = (tab === 'roles') ? 'block' : 'none';
-      document.getElementById('vmUsersTabContent').style.display = (tab === 'users') ? 'block' : 'none';
-    }
-
-    function renderRolePermissionsMatrix() {
-      const role = document.getElementById('vmSelectRole').value;
-      const table = document.getElementById('vmRolePermsTable');
-
-      rolePermissions[role] = rolePermissions[role] || {};
-
-      let html = `
-        <thead>
-          <tr>
-            <th style="width:34%;">Модуль / Раздел</th>
-            <th>Просмотр</th>
-            <th>Редактирование</th>
-            <th>Удаление</th>
-            <th>Администрирование</th>
-          </tr>
-        </thead>
-        <tbody>
-      `;
-
-      VM_MODULES.forEach(mod => {
-        const p = rolePermissions[role][mod.id] || { view: true, edit: false, del: false, admin: false };
-        html += `
-          <tr>
-            <td>${mod.name}</td>
-            <td class="cell-perm ${p.view ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'view')">
-              <input type="checkbox" ${p.view ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'view')">
-            </td>
-            <td class="cell-perm ${p.edit ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'edit')">
-              <input type="checkbox" ${p.edit ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'edit')">
-            </td>
-            <td class="cell-perm ${p.del ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'del')">
-              <input type="checkbox" ${p.del ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'del')">
-            </td>
-            <td class="cell-perm ${p.admin ? 'checked' : ''}" onclick="togglePerm('${role}', '${mod.id}', 'admin')">
-              <input type="checkbox" ${p.admin ? 'checked' : ''} onclick="event.stopPropagation(); togglePerm('${role}', '${mod.id}', 'admin')">
-            </td>
-          </tr>
-        `;
-      });
-
-      html += '</tbody>';
-      table.innerHTML = html;
-    }
-
-    function togglePerm(role, modId, permType) {
-      rolePermissions[role] = rolePermissions[role] || {};
-      rolePermissions[role][modId] = rolePermissions[role][modId] || { view: true, edit: false, del: false, admin: false };
-      rolePermissions[role][modId][permType] = !rolePermissions[role][modId][permType];
-
-      syncToCloud('perms_v90', rolePermissions);
-      renderRolePermissionsMatrix();
-    }
-
-    function renderUsersTable() {
-      const tbody = document.getElementById('usersTableBody');
-      tbody.innerHTML = '';
-      usersList.forEach(u => {
-        tbody.innerHTML += `
-          <tr>
-            <td><strong>${u.fullName}</strong></td><td><code>${u.username}</code></td><td>${u.email||'—'}</td><td>${u.roleName}</td>
-            <td>${u.username !== 'admin' ? `<button class="btn btn-outline" style="color:var(--accent-red); padding:2px 6px;" onclick="deleteUser('${u.id}')">Удалить</button>` : 'Администратор'}</td>
-          </tr>
-        `;
-      });
-    }
-
-    function openCreateUserForm() { document.getElementById('newUserModal').classList.add('active'); }
-    function saveNewUser() {
-      const fullName = document.getElementById('newFullName').value.trim();
-      const email = document.getElementById('newEmail').value.trim();
-      const username = document.getElementById('newUsername').value.trim();
-      const password = document.getElementById('newPassword').value.trim();
-      const role = document.getElementById('newRole').value;
-      const roleName = document.getElementById('newRole').options[document.getElementById('newRole').selectedIndex].text;
-
-      if (!fullName || !username || !password || !email) return alert('Заполните все поля!');
-      usersList.push({ id: 'u_' + Date.now(), fullName, email, username, password, role, roleName });
-      syncToCloud('users_v90', usersList);
-      document.getElementById('newUserModal').classList.remove('active');
-      openUsersModal();
-      alert('Сотрудник зарегистрирован!');
-    }
-
-    function deleteUser(id) {
-      if (confirm('Удалить сотрудника?')) {
-        usersList = usersList.filter(u => u.id !== id);
-        syncToCloud('users_v90', usersList);
-        openUsersModal();
-      }
-    }
-
-    function exportData() {
-      const blob = new Blob([JSON.stringify({ pages: pagesList, cards: dashCards, users: usersList, perms: rolePermissions }, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-      a.download = `nadezhda_full_${new Date().toISOString().slice(0,10)}.json`; a.click();
-    }
-
-    function importData(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        try {
-          const d = JSON.parse(evt.target.result);
-          if (d.pages) {
-            pagesList = d.pages;
-            dashCards = d.cards || dashCards;
-            usersList = d.users || usersList;
-            rolePermissions = d.perms || rolePermissions;
-            syncToCloud('pages_v90', pagesList);
-            syncToCloud('cards_v90', dashCards);
-            syncToCloud('users_v90', usersList);
-            syncToCloud('perms_v90', rolePermissions);
-            location.reload();
-          }
-        } catch(err) { alert('Ошибка импорта'); }
-      };
-      reader.readAsText(file);
-    }
-
-    initApp();
-  </script>
-</body>
-</html>
+    function renderPresentationSlidesBuilder() {
+      const c = document.getElementById('presentationSlidesBuilderList');
+      c.innerHTML = '';
+      builderSlides.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'padding:10px; background:#fff; border:1px solid #CBD5E1; border-radius:6px; margin-bottom:8px;';
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <strong style="font-size:0.85rem;">Слайд #${idx + 1}</strong>
+            <button type="button" class="btn-icon" style="color:var(--accent-red);" onclick="builderSlides.splice(${idx}, 1); renderPresentationSlidesBuilder();">🗑️</button>
+          </div>
+          <input type="text" placeholder="Заголовок слайда..." value="${s.title}" oninput="builderSlides[${idx}].title = this.value" style="margin-bottom:4px;">
+          <textarea placeholder="Т
