@@ -44,7 +44,7 @@
       overflow: hidden;
     }
 
-    /* Экран входа */
+    /* Авторизация */
     .auth-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(11, 37, 62, 0.88); backdrop-filter: blur(6px);
@@ -73,7 +73,7 @@
       background: none; border: none; cursor: pointer; font-size: 1.1rem; opacity: 0.6;
     }
 
-    /* Шапка */
+    /* Шапка сайта */
     .header {
       position: fixed; top: 0; left: 0; right: 0; height: 72px;
       background: #FFFFFF; border-bottom: 3px solid var(--brand-blue);
@@ -88,7 +88,7 @@
     .header-logo { display: flex; align-items: center; cursor: pointer; }
     .header-logo-img { height: 48px; max-width: 210px; object-fit: contain; display: block; }
 
-    /* Поиск */
+    /* Поиск в шапке */
     .header-search-container { display: flex; align-items: center; gap: 6px; position: relative; margin: 0 12px; }
     .header-search { width: 310px; position: relative; }
     .header-search input {
@@ -168,10 +168,7 @@
     .nav-item.active { background: var(--brand-light); color: var(--brand-blue); font-weight: 700; border-left-color: var(--brand-blue); }
     .nav-item-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Инструменты скрытия и редактирования на строке меню */
-    .nav-item-actions {
-      display: none; align-items: center; gap: 4px;
-    }
+    .nav-item-actions { display: none; align-items: center; gap: 4px; }
     .nav-item:hover .nav-item-actions { display: flex; }
     .nav-action-btn {
       background: none; border: none; cursor: pointer; font-size: 0.78rem; padding: 2px 4px;
@@ -179,7 +176,7 @@
     }
     .nav-action-btn:hover { opacity: 1; background: #CBD5E1; }
     .nav-hidden-badge {
-      font-size: 0.7rem; color: var(--accent-amber); background: var(--accent-amber-bg);
+      font-size: 0.68rem; color: var(--accent-amber); background: var(--accent-amber-bg);
       padding: 1px 5px; border-radius: 4px; font-weight: 700; margin-left: 4px;
     }
 
@@ -236,32 +233,73 @@
     }
     .card-tool-btn:hover { background: #E2E8F0; }
 
-    /* Красная карточка Яндекс Диска */
+    /* Красная плашка Яндекс Диска */
     .yandex-integration-card {
       background: #FFFFFF; border: 1.5px solid #FCA5A5; border-left: 5px solid var(--yandex-red);
       border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
       margin: 16px 0 24px; box-shadow: 0 2px 8px rgba(252, 63, 29, 0.08); gap: 14px;
     }
 
-    /* Блоки статьи */
-    .page-block-wrapper { position: relative; margin-bottom: 22px; border-radius: 8px; }
-    .page-block-wrapper:hover { outline: 1.5px dashed var(--brand-blue); outline-offset: 4px; }
+    /* Ссылки внутри текста */
+    .wiki-internal-link {
+      color: var(--brand-blue); background: var(--brand-light); padding: 3px 8px; border-radius: 6px;
+      text-decoration: none; font-weight: 700; border: 1px solid var(--brand-border); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px; margin: 0 2px; transition: all 0.15s;
+    }
+    .wiki-internal-link:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
+
+    /* СТИЛИ СТАТЕЙ И МАТЕРИАЛОВ (БЕЗ ВИДА "ЗАМЕТКИ") */
+    .page-block-wrapper { position: relative; margin-bottom: 20px; border-radius: 10px; }
     .page-block-tools {
-      position: absolute; top: -12px; right: 12px; display: none; gap: 4px; background: #FFFFFF;
-      border: 1px solid var(--brand-border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 6px; padding: 2px 6px; z-index: 10;
+      position: absolute; top: -12px; right: 14px; display: none; gap: 4px; background: #FFFFFF;
+      border: 1px solid var(--brand-border); box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 6px; padding: 2px 6px; z-index: 10;
     }
     .page-block-wrapper:hover .page-block-tools { display: flex; }
 
+    /* Солидный баннер регламента */
     .info-banner {
-      background: #FFFFFF; border-left: 4px solid var(--brand-blue); padding: 18px 20px; border-radius: 0 8px 8px 0;
-      box-shadow: 0 1px 3px rgba(11, 53, 88, 0.04); border-top: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;
+      background: #FFFFFF; border-left: 4px solid var(--brand-blue); padding: 18px 22px; border-radius: 0 10px 10px 0;
+      box-shadow: 0 2px 8px rgba(11, 53, 88, 0.05); border-top: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;
       font-size: 0.95rem; line-height: 1.6;
     }
-    .checklist { background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 8px; padding: 14px 20px; margin: 12px 0; }
-    .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #EEF5FA; font-size: 0.92rem; }
+
+    /* Чек-лист в виде корпоративной карточки */
+    .checklist-card {
+      background: #FFFFFF; border: 1px solid var(--brand-border); border-radius: 10px;
+      padding: 16px 22px; margin: 12px 0; box-shadow: 0 2px 8px rgba(11, 53, 88, 0.04);
+    }
+    .checklist-title { font-size: 1.05rem; font-weight: 700; color: var(--brand-deep); margin-bottom: 12px; border-bottom: 1px solid #EEF5FA; padding-bottom: 8px; }
+    .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 0.92rem; }
     .check-item:last-child { border-bottom: none; }
     .check-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--brand-blue); width: 17px; height: 17px; cursor: pointer; }
     .check-item.done span { text-decoration: line-through; color: var(--text-muted); }
+
+    /* ВЫПАДАЮЩАЯ ВКЛАДКА (АККОРДЕОН / СПОЙЛЕР) */
+    .accordion-block {
+      background: #FFFFFF; border: 1.5px solid var(--brand-border); border-radius: 10px;
+      overflow: hidden; margin: 14px 0; box-shadow: 0 2px 8px rgba(11, 53, 88, 0.04);
+    }
+    .accordion-header {
+      padding: 14px 20px; background: #FAFCFE; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      user-select: none; font-weight: 700; color: var(--brand-deep); transition: background 0.15s;
+    }
+    .accordion-header:hover { background: var(--brand-light); }
+    .accordion-arrow { transition: transform 0.2s ease; font-size: 0.85rem; color: var(--brand-blue); }
+    .accordion-block.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      display: none; padding: 18px 20px; border-top: 1px solid var(--brand-border); background: #FFFFFF;
+    }
+    .accordion-block.open .accordion-body { display: block; }
+    
+    .accordion-pages-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 14px;
+    }
+    .accordion-page-btn {
+      padding: 10px 14px; background: #F8FAFD; border: 1px solid var(--brand-border); border-radius: 8px;
+      text-align: left; cursor: pointer; font-size: 0.88rem; font-weight: 600; color: var(--brand-deep);
+      display: flex; align-items: center; justify-content: space-between; transition: all 0.15s;
+    }
+    .accordion-page-btn:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
 
     /* Медиа */
     .media-card {
@@ -381,7 +419,6 @@
     <div class="header-actions">
       <div class="cloud-indicator" id="cloudStatusBadge">☁️ Облако онлайн</div>
 
-      <!-- Кнопка создания новой страницы -->
       <button class="btn btn-primary" id="btnCreateNewPageHeader" style="display:none;" onclick="openCreatePageRecordModal()">
         + Новая страница
       </button>
@@ -529,7 +566,7 @@
     </div>
   </div>
 
-  <!-- 4. Добавление пункта статьи с текстом, ссылкой, фото, видео или файлом -->
+  <!-- 4. Добавление пункта статьи (включая Выпадающую вкладку) -->
   <div class="modal-overlay" id="articleBlockModal">
     <div class="modal-window">
       <div class="modal-title" id="articleBlockModalTitle">Пункт регламента / Материал обучения</div>
@@ -538,8 +575,9 @@
       <div class="form-group">
         <label>Тип материала</label>
         <select id="articleBlockTypeSelect" onchange="toggleArticleBlockFields()">
-          <option value="banner">Текстовый регламент / Алгоритм</option>
+          <option value="banner">Текстовый регламент / Теория</option>
           <option value="checklist">Контрольный чек-лист</option>
+          <option value="accordion">🔽 Выпадающая вкладка (Спойлер с вложенными страницами)</option>
           <option value="image">Изображение / Инфографика / Фото</option>
           <option value="video">Обучающее видео (YouTube, Rutube, Ссылка)</option>
           <option value="file">Файл / Документ / Бланк для скачивания</option>
@@ -547,18 +585,24 @@
       </div>
 
       <div class="form-group">
-        <label>Заголовок / Название пункта</label>
+        <label>Заголовок блока / Название вкладки</label>
         <input type="text" id="articleBlockTitleInput">
       </div>
 
       <div class="form-group" id="grpBlockText">
-        <label>Текст описания / Инструкция</label>
+        <label id="lblBlockText">Текст описания / Инструкция</label>
         <textarea id="articleBlockTextInput" style="min-height:120px;"></textarea>
       </div>
 
       <div class="form-group" id="grpBlockUrl" style="display:none;">
         <label>Ссылка на медиа / файл (URL)</label>
         <input type="text" id="articleBlockUrlInput" placeholder="https://... (прямая ссылка, YouTube или диск)">
+      </div>
+
+      <!-- Настройка вложенных страниц для выпадающей вкладки -->
+      <div class="form-group" id="grpBlockAccordionPages" style="display:none; background:var(--brand-light); padding:12px; border-radius:8px; border:1px solid var(--brand-border);">
+        <label style="color:var(--brand-deep); font-weight:800;">Страницы, прикреплённые к этой выпадающей вкладке:</label>
+        <div id="accordionPagesCheckboxList" style="max-height:160px; overflow-y:auto; margin-top:6px;"></div>
       </div>
 
       <div class="modal-actions">
@@ -578,7 +622,6 @@
         <div class="vm-tab" id="tabUsersBtn" onclick="switchVmTab('users')">Список пользователей</div>
       </div>
 
-      <!-- Вкладка 1: Матрица допуска по ролям -->
       <div id="vmRolesTabContent">
         <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">
           Нажмите на ячейку для переключения допуска (зелёный — разрешено, красный — запрещено).
@@ -596,7 +639,6 @@
         <table class="perm-grid-table" id="vmRolePermsTable"></table>
       </div>
 
-      <!-- Вкладка 2: Пользователи -->
       <div id="vmUsersTabContent" style="display:none;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <span style="font-size:0.85rem; color:var(--text-muted);">Зарегистрированные пользователи:</span>
@@ -685,7 +727,7 @@
       { id: "mod_laboratory", name: "Лаборатория" }
     ];
 
-    /* СТРАНИЦЫ БАЗЫ ЗНАНИЙ (С ФЛАГОМ showInSidebar ДЛЯ СКРЫТИЯ/ПОКАЗА) */
+    /* СТРАНИЦЫ БАЗЫ ЗНАНИЙ (С ВЫПАДАЮЩИМИ ВКЛАДКАМИ) */
     const DEFAULT_PAGES = [
       {
         id: "home",
@@ -705,8 +747,18 @@
         badge: "Колл-центр",
         showInSidebar: true,
         blocks: [
-          { type: "banner", title: "Золотое правило оператора", text: "Снятие трубки до третьего гудка. Всегда уточняйте наличие экстренных симптомов у питомца в первые 30 секунд разговора. При подозрении на хирургию переходите в [Предоперационную подготовку -> page_surgery]." },
-          { type: "checklist", title: "Контрольный чек-лист звонка", items: ["Приветствие с представлением клиники", "Уточнить кличку, возраст и породу", "Проверить одышку, судороги и рвоту", "Предупредить о голодной диете 6-8 часов"] }
+          { type: "banner", title: "Золотое правило оператора", text: "Снятие трубки до третьего гудка. Всегда уточняйте наличие экстренных симптомов у питомца в первые 30 секунд разговора." },
+          { 
+            type: "checklist", 
+            title: "Контрольный чек-лист звонка", 
+            items: ["Приветствие с представлением клиники", "Уточнить кличку, возраст и породу", "Проверить одышку, судороги и рвоту", "Предупредить о голодной диете 6-8 часов"] 
+          },
+          {
+            type: "accordion",
+            title: "🔽 Вложенные инструкции и обучение для операторов",
+            text: "В этом блоке собраны пошаговые регламенты и страницы адаптации для новых сотрудников колл-центра:",
+            attachedPages: ["page_surgery", "page_heads"]
+          }
         ]
       },
       {
@@ -729,97 +781,20 @@
           { type: "banner", title: "Предоперационная подготовка", text: "Животные брахицефалических пород и пациенты старше 6 лет допускаются строго после ЭхоКГ сердца." },
           { type: "image", title: "Схема фиксации пациента на операционном столе", url: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1000&auto=format&fit=crop&q=80" }
         ]
-      },
-      {
-        id: "page_admin",
-        title: "Администраторы и служба заботы",
-        category: "АДМИНИСТРАТОРЫ И РЕЦЕПЦИЯ",
-        badge: "Рецепция",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Стандарты встречи клиентов", text: "Встреча клиента стоя, приветствие и зрительный контакт в первые 5 секунд после входа в холл клиники." }
-        ]
-      },
-      {
-        id: "page_therapy",
-        title: "Терапевтическое отделение",
-        category: "ТЕРАПИЯ",
-        badge: "Терапия",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Доказательные алгоритмы", text: "Обязательный диагностический минимум: общий и биохимический анализ крови, УЗИ обзорное." }
-        ]
-      },
-      {
-        id: "page_assistants",
-        title: "Ассистенты ветеринарного врача",
-        category: "АССИСТЕНТЫ ВРАЧЕЙ",
-        badge: "Процедурный кабинет",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Постановка венозных катетеров", text: "Шерсть выбривается с запасом, обработка антисептиком 30 секунд. Гепариновый замок обновляется каждые 8 часов." }
-        ]
-      },
-      {
-        id: "page_mri_ct",
-        title: "Отделение МРТ и КТ диагностики",
-        category: "ТОМОГРАФИЯ",
-        badge: "Томография",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Безопасность томографа", text: "Категорически запрещён вход с ферромагнитными предметами. Все ошейники и карабины снимаются до зоны сканирования." }
-        ]
-      },
-      {
-        id: "page_regulations",
-        title: "Общеклинические регламенты работы",
-        category: "РЕГЛАМЕНТЫ РАБОТЫ",
-        badge: "Внутренний распорядок",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Трудовой распорядок", text: "Смена начинается за 15 минут до открытия для приёма стационара, осмотра боксов и проверки оборудования." }
-        ]
-      },
-      {
-        id: "page_anesthesia",
-        title: "Анестезиология и реанимация",
-        category: "АНЕСТЕЗИОЛОГИЯ",
-        badge: "ОРИТ",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Мониторинг витальных функций", text: "Капнография, пульсоксиметрия, ЭКГ и артериальное давление фиксируются в наркозной карте каждые 5 минут." }
-        ]
-      },
-      {
-        id: "page_laboratory",
-        title: "Клиническая лаборатория",
-        category: "ЛАБОРАТОРИЯ",
-        badge: "Анализы",
-        showInSidebar: false,
-        blocks: [
-          { type: "banner", title: "Преаналитический этап", text: "Маркировка пробирок (ЭДТА, цитрат, биохимия) производится строго в присутствии владельца сразу после забора крови." }
-        ]
       }
     ];
 
-    /* КАРТОЧКИ НА ГЛАВНОЙ СТРАНИЦЕ */
+    /* КАРТОЧКИ НА ГЛАВНОЙ */
     const DEFAULT_DASH_CARDS = [
       { id: "c_operators", title: "Колл-центр и операторы", desc: "Скрипты консультаций, запись к узким специалистам, триаж.", icon: "🎧", pageId: "page_operators", color: "linear-gradient(135deg, #0088D4, #00A6FF)" },
       { id: "c_heads", title: "Заведующие отделениями", desc: "Контроль историй болезни, аудит смен, консилиумы.", icon: "🏛️", pageId: "page_heads", color: "linear-gradient(135deg, #0B3558, #185285)" },
-      { id: "c_surgery", title: "Хирургия и оперблок", desc: "Предоперационный чек-лист, наркозный протокол, стерилизация.", icon: "🔪", pageId: "page_surgery", color: "linear-gradient(135deg, #0F766E, #14B8A6)" },
-      { id: "c_admin", title: "Администраторы и служба заботы", desc: "Встреча клиентов, оформление в Ветменеджере, сервис.", icon: "💻", pageId: "page_admin", color: "linear-gradient(135deg, #0088D4, #0284C7)" },
-      { id: "c_therapy", title: "Терапия", desc: "Протоколы доказательной терапии, анализы, диагностика.", icon: "🩺", pageId: "page_therapy", color: "linear-gradient(135deg, #0284C7, #38BDF8)" },
-      { id: "c_assistants", title: "Ассистенты", desc: "Забор крови, катетеры, асептика, подготовка процедурных.", icon: "🩸", pageId: "page_assistants", color: "linear-gradient(135deg, #7C3AED, #A78BFA)" },
-      { id: "c_mri_ct", title: "Отделение МРТ/КТ", desc: "Подготовка к томографии, укладки, контрастные протоколы.", icon: "🏥", pageId: "page_mri_ct", color: "linear-gradient(135deg, #6366F1, #818CF8)" },
-      { id: "c_regulations", title: "Регламенты работы", desc: "Общеклинические правила, график, дисциплина, безопасность.", icon: "📋", pageId: "page_regulations", color: "linear-gradient(135deg, #64748B, #94A3B8)" },
-      { id: "c_anesthesia", title: "Анестезиология", desc: "Протоколы седации, мониторинг витальных функций, реанимация.", icon: "💉", pageId: "page_anesthesia", color: "linear-gradient(135deg, #9333EA, #C084FC)" },
-      { id: "c_laboratory", title: "Лаборатория", desc: "Правила взятия биоматериала, хранение, экспресс-тесты.", icon: "🔬", pageId: "page_laboratory", color: "linear-gradient(135deg, #059669, #34D399)" }
+      { id: "c_surgery", title: "Хирургия и оперблок", desc: "Предоперационный чек-лист, наркозный протокол, стерилизация.", icon: "🔪", pageId: "page_surgery", color: "linear-gradient(135deg, #0F766E, #14B8A6)" }
     ];
 
-    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v80')) || DEFAULT_PAGES;
-    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v80')) || DEFAULT_DASH_CARDS;
-    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v80')) || DEFAULT_USERS;
-    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v80')) || {};
+    let pagesList = JSON.parse(localStorage.getItem('nadezhda_pages_v90')) || DEFAULT_PAGES;
+    let dashCards = JSON.parse(localStorage.getItem('nadezhda_cards_v90')) || DEFAULT_DASH_CARDS;
+    let usersList = JSON.parse(localStorage.getItem('nadezhda_users_v90')) || DEFAULT_USERS;
+    let rolePermissions = JSON.parse(localStorage.getItem('nadezhda_role_perms_v90')) || {};
     let customLogo = localStorage.getItem('nadezhda_uploaded_logo') || DEFAULT_LOGO_DATA_URL;
 
     let currentUser = JSON.parse(sessionStorage.getItem('nadezhda_active_user')) || null;
@@ -828,9 +803,9 @@
 
     /* ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ */
     function syncToCloud(key, data) {
-      localStorage.setItem('nadezhda_' + key + '_v80', JSON.stringify(data));
+      localStorage.setItem('nadezhda_' + key + '_v90', JSON.stringify(data));
       if (firebaseDb && isCloudOnline) {
-        firebaseDb.ref(key + '_v80').set(data).catch(e => console.error("Firebase write error:", e));
+        firebaseDb.ref(key + '_v90').set(data).catch(e => console.error("Firebase write error:", e));
       }
     }
 
@@ -841,10 +816,10 @@
         return;
       }
 
-      firebaseDb.ref('pages_v80').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
-      firebaseDb.ref('cards_v80').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
-      firebaseDb.ref('users_v80').on('value', s => { if (s.val()) { usersList = s.val(); } });
-      firebaseDb.ref('perms_v80').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
+      firebaseDb.ref('pages_v90').on('value', s => { if (s.val()) { pagesList = s.val(); renderPage(currentPageId); renderSidebar(); } });
+      firebaseDb.ref('cards_v90').on('value', s => { if (s.val()) { dashCards = s.val(); if (currentPageId === 'home') renderPage('home'); } });
+      firebaseDb.ref('users_v90').on('value', s => { if (s.val()) { usersList = s.val(); } });
+      firebaseDb.ref('perms_v90').on('value', s => { if (s.val()) { rolePermissions = s.val(); } });
       firebaseDb.ref('logo').on('value', s => { if (s.val()) { customLogo = s.val(); applyCurrentLogo(); } });
     }
 
@@ -904,7 +879,7 @@
       let targetList = usersList;
       if (firebaseDb && isCloudOnline) {
         try {
-          const snap = await firebaseDb.ref('users_v80').once('value');
+          const snap = await firebaseDb.ref('users_v90').once('value');
           if (snap.val()) targetList = snap.val();
         } catch(err) {}
       }
@@ -953,14 +928,12 @@
       nav.innerHTML = '';
       const canManage = currentUser && (currentUser.role === 'admin' || currentUser.role === 'head');
 
-      // Тестирования
       const testItem = document.createElement('div');
       testItem.className = `nav-item ${currentPageId === 'my_tests' ? 'active' : ''}`;
       testItem.onclick = () => { openDoc('my_tests'); if (window.innerWidth <= 900) toggleMobileSidebar(); };
       testItem.innerHTML = `<span class="nav-item-title">🎓 Мои тестирования</span>`;
       nav.appendChild(testItem);
 
-      // Фильтруем: обычные пользователи видят только showInSidebar === true, админ видит все страницы (скрытые помечены иконкой)
       const pagesToDisplay = pagesList.filter(p => {
         if (p.id === 'home') return true;
         if (canManage) return true;
@@ -987,7 +960,6 @@
             if (window.innerWidth <= 900) toggleMobileSidebar();
           };
 
-          // Инструменты управления видимостью для администратора
           const hideControl = (canManage && p.id !== 'home') ? `
             <div class="nav-item-actions" onclick="event.stopPropagation();">
               <button class="nav-action-btn" title="${p.showInSidebar ? 'Скрыть от сотрудников' : 'Показать сотрудникам'}" onclick="toggleSidebarVisibility('${p.id}')">
@@ -996,7 +968,7 @@
             </div>
           ` : '';
 
-          const hiddenBadge = (canManage && !p.showInSidebar && p.id !== 'home') ? `<span class="nav-hidden-badge" title="Скрыто от обычных сотрудников">скрыто</span>` : '';
+          const hiddenBadge = (canManage && !p.showInSidebar && p.id !== 'home') ? `<span class="nav-hidden-badge">скрыто</span>` : '';
 
           item.innerHTML = `
             <span class="nav-item-title" title="${p.title}">${p.title} ${hiddenBadge}</span>
@@ -1013,7 +985,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = !page.showInSidebar;
-        syncToCloud('pages_v80', pagesList);
+        syncToCloud('pages_v90', pagesList);
         renderSidebar();
       }
     }
@@ -1038,8 +1010,8 @@
           ]
         });
         card.pageId = targetPageId;
-        syncToCloud('pages_v80', pagesList);
-        syncToCloud('cards_v80', dashCards);
+        syncToCloud('pages_v90', pagesList);
+        syncToCloud('cards_v90', dashCards);
       }
 
       openDoc(targetPageId);
@@ -1072,7 +1044,13 @@
       });
     }
 
-    /* ПЕРЕМЕЩЕНИЕ И КОПИРОВАНИЕ КАРТОЧЕК */
+    /* РАСКРЫТИЕ ВЫПАДАЮЩЕЙ ВКЛАДКИ (СПОЙЛЕРА) */
+    function toggleAccordion(headerEl) {
+      const block = headerEl.closest('.accordion-block');
+      block.classList.toggle('open');
+    }
+
+    /* КАРТОЧКИ НА ГЛАВНОЙ */
     function moveCard(index, direction, e) {
       if (e) e.stopPropagation();
       const newIndex = index + direction;
@@ -1080,7 +1058,7 @@
       const temp = dashCards[index];
       dashCards[index] = dashCards[newIndex];
       dashCards[newIndex] = temp;
-      syncToCloud('cards_v80', dashCards);
+      syncToCloud('cards_v90', dashCards);
       renderPage('home');
     }
 
@@ -1110,8 +1088,8 @@
         color: original.color
       });
 
-      syncToCloud('pages_v80', pagesList);
-      syncToCloud('cards_v80', dashCards);
+      syncToCloud('pages_v90', pagesList);
+      syncToCloud('cards_v90', dashCards);
       renderPage('home');
     }
 
@@ -1123,7 +1101,7 @@
       const temp = page.blocks[index];
       page.blocks[index] = page.blocks[newIndex];
       page.blocks[newIndex] = temp;
-      syncToCloud('pages_v80', pagesList);
+      syncToCloud('pages_v90', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1133,7 +1111,7 @@
       const copy = JSON.parse(JSON.stringify(page.blocks[index]));
       copy.title = (copy.title || '') + ' (Копия)';
       page.blocks.splice(index + 1, 0, copy);
-      syncToCloud('pages_v80', pagesList);
+      syncToCloud('pages_v90', pagesList);
       renderPage(currentPageId);
     }
 
@@ -1175,7 +1153,7 @@
       `;
     }
 
-    /* РЕНДЕР СТРАНИЦЫ */
+    /* РЕНДЕР СТРАНИЦЫ С ВЫПАДАЮЩИМИ ВКЛАДКАМИ */
     function renderPage(pageId) {
       const area = document.getElementById('documentArea');
       const canEdit = currentUser && (currentUser.role === 'admin' || currentUser.role === 'head');
@@ -1223,7 +1201,6 @@
             ` : ''}
           </div>
           
-          <!-- Красная плашка Яндекс Диска -->
           <div class="yandex-integration-card">
             <div>
               <strong style="color:var(--yandex-red); font-size:1.05rem;">📁 Корпоративное хранилище документов на Яндекс Диске</strong>
@@ -1252,9 +1229,46 @@
         ` : '';
 
         let contentHtml = '';
-        if (b.type === 'checklist') {
+
+        // ВЫПАДАЮЩАЯ ВКЛАДКА (АККОРДЕОН)
+        if (b.type === 'accordion') {
+          const attached = (b.attachedPages || []).map(pId => pagesList.find(x => x.id === pId)).filter(Boolean);
+          const attachedButtonsHtml = attached.map(ap => `
+            <div class="accordion-page-btn" onclick="openDoc('${ap.id}')">
+              <span>📄 ${ap.title}</span>
+              <span>→</span>
+            </div>
+          `).join('');
+
+          contentHtml = `
+            <div class="accordion-block">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>${b.title || 'Выпадающий раздел'}</span>
+                <span class="accordion-arrow">▼</span>
+              </div>
+              <div class="accordion-body">
+                ${b.text ? `<div style="font-size:0.92rem; color:var(--brand-deep); margin-bottom:12px; line-height:1.5;">${parseInternalWikiLinks(b.text)}</div>` : ''}
+                ${attachedButtonsHtml ? `
+                  <div style="font-size:0.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Вложенные страницы обучения:</div>
+                  <div class="accordion-pages-grid">${attachedButtonsHtml}</div>
+                ` : ''}
+                ${canEdit ? `
+                  <div style="margin-top:14px;">
+                    <button class="btn btn-outline" style="font-size:0.75rem; padding:4px 8px;" onclick="openCreatePageRecordModal('${page.category || 'ОБЩИЕ СВЕДЕНИЯ'}')">+ Создать новую страницу для этой вкладки</button>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        } 
+        else if (b.type === 'checklist') {
           const listItems = (b.items || []).map(i => `<label class="check-item"><input type="checkbox"> <span>${parseInternalWikiLinks(i)}</span></label>`).join('');
-          contentHtml = `<div><h3 style="color:var(--brand-deep); margin-bottom:10px;">${b.title}</h3><div class="checklist">${listItems}</div></div>`;
+          contentHtml = `
+            <div class="checklist-card">
+              <div class="checklist-title">${b.title || 'Контрольный чек-лист'}</div>
+              <div>${listItems}</div>
+            </div>
+          `;
         } else if (b.type === 'image') {
           contentHtml = `
             <div class="media-card">
@@ -1281,16 +1295,6 @@
                 ${b.text ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">${parseInternalWikiLinks(b.text)}</div>` : ''}
               </div>
               <a href="${b.url || '#'}" target="_blank" class="btn btn-outline">Скачать файл 📥</a>
-            </div>
-          `;
-        } else if (b.type === 'yandex') {
-          contentHtml = `
-            <div class="yandex-integration-card" style="margin: 10px 0;">
-              <div>
-                <strong style="color:var(--yandex-red); font-size:1.05rem;">📁 ${b.title || 'Корпоративное хранилище документов на Яндекс Диске'}</strong>
-                <div style="font-size:0.83rem; color:var(--text-muted); margin-top:3px;">Официальные файлы и бланки</div>
-              </div>
-              <a href="${b.url || 'https://disk.yandex.ru/d/5HlCdgS2idp2Gg'}" target="_blank" class="btn btn-yandex" style="font-weight:700;">Перейти к файлам</a>
             </div>
           `;
         } else {
@@ -1320,7 +1324,7 @@
             </div>
           ` : ''}
         </div>
-        <div class="doc-body">${blocksHtml || '<div style="padding:24px; background:#fff; border-radius:10px; border:1px solid var(--brand-border); text-align:center; color:var(--text-muted);">На этой странице пока нет пунктов. Нажмите «+ Добавить пункт», чтобы добавить текст, чек-лист, видео или фото.</div>'}</div>
+        <div class="doc-body">${blocksHtml || '<div style="padding:24px; background:#fff; border-radius:10px; border:1px solid var(--brand-border); text-align:center; color:var(--text-muted);">На этой странице пока нет пунктов. Нажмите «+ Добавить пункт», чтобы добавить выпадающую вкладку, текст, чек-лист или видео.</div>'}</div>
       `;
 
       area.querySelectorAll('.check-item input').forEach(input => {
@@ -1392,7 +1396,7 @@
           showInSidebar: false,
           blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: desc || 'Заполните содержание регламента...' }]
         });
-        syncToCloud('pages_v80', pagesList);
+        syncToCloud('pages_v90', pagesList);
       }
 
       if (id) {
@@ -1402,7 +1406,7 @@
         dashCards.push({ id: 'card_' + Date.now(), title, desc, icon, pageId: finalPageId, color });
       }
 
-      syncToCloud('cards_v80', dashCards);
+      syncToCloud('cards_v90', dashCards);
       closeModuleModal();
       renderPage('home');
       renderSidebar();
@@ -1412,17 +1416,17 @@
       if (e) e.stopPropagation();
       if (confirm('Удалить эту карточку направления?')) {
         dashCards = dashCards.filter(c => c.id !== cardId);
-        syncToCloud('cards_v80', dashCards);
+        syncToCloud('cards_v90', dashCards);
         renderPage('home');
       }
     }
 
     /* СОЗДАНИЕ НОВОЙ СТРАНИЦЫ (КНОПКА «+ НОВАЯ СТРАНИЦА») */
-    function openCreatePageRecordModal() {
+    function openCreatePageRecordModal(presetCategory = '') {
       document.getElementById('editPageRecordId').value = '';
       document.getElementById('pageRecordModalTitle').innerText = 'Создать новую страницу';
       document.getElementById('newPageRecordTitle').value = '';
-      document.getElementById('newPageRecordCategory').value = 'ОБЩИЕ СВЕДЕНИЯ';
+      document.getElementById('newPageRecordCategory').value = presetCategory || 'ОБЩИЕ СВЕДЕНИЯ';
       document.getElementById('newPageShowInSidebar').checked = true;
       document.getElementById('pageRecordModal').classList.add('active');
     }
@@ -1448,7 +1452,7 @@
         blocks: [{ type: 'banner', title: 'Основное положение: ' + title, text: 'Заполните содержание обучения или регламента...' }]
       });
 
-      syncToCloud('pages_v80', pagesList);
+      syncToCloud('pages_v90', pagesList);
       closePageRecordModal();
       renderSidebar();
       openDoc(newId);
@@ -1490,7 +1494,7 @@
       const page = pagesList.find(p => p.id === pageId);
       if (page) {
         page.showInSidebar = isChecked;
-        syncToCloud('pages_v80', pagesList);
+        syncToCloud('pages_v90', pagesList);
         renderSidebar();
       }
     }
@@ -1502,8 +1506,8 @@
         dashCards.forEach(c => {
           if (c.pageId === pageId) c.pageId = 'home';
         });
-        syncToCloud('pages_v80', pagesList);
-        syncToCloud('cards_v80', dashCards);
+        syncToCloud('pages_v90', pagesList);
+        syncToCloud('cards_v90', dashCards);
         renderSidebar();
         if (document.getElementById('allPagesModal').classList.contains('active')) renderAllPagesTable();
         openDoc('home');
@@ -1514,7 +1518,27 @@
     function toggleArticleBlockFields() {
       const type = document.getElementById('articleBlockTypeSelect').value;
       const grpUrl = document.getElementById('grpBlockUrl');
+      const grpAccPages = document.getElementById('grpBlockAccordionPages');
+      const lblText = document.getElementById('lblBlockText');
+
       grpUrl.style.display = (type === 'image' || type === 'video' || type === 'file') ? 'block' : 'none';
+      grpAccPages.style.display = (type === 'accordion') ? 'block' : 'none';
+
+      if (type === 'accordion') {
+        lblText.innerText = 'Текст внутри выпадающей вкладки (описание/вводная часть)';
+      } else {
+        lblText.innerText = 'Текст описания / Инструкция';
+      }
+    }
+
+    function renderAccordionPagesCheckboxes(selectedPageIds = []) {
+      const container = document.getElementById('accordionPagesCheckboxList');
+      container.innerHTML = pagesList.filter(p => p.id !== 'home' && p.id !== currentPageId).map(p => `
+        <label style="display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.85rem; cursor:pointer;">
+          <input type="checkbox" value="${p.id}" ${selectedPageIds.includes(p.id) ? 'checked' : ''} class="acc-page-chk" style="width:16px; height:16px; accent-color:var(--brand-blue);">
+          <span>${p.title} (${p.category || 'Раздел'})</span>
+        </label>
+      `).join('');
     }
 
     function openCreateArticleBlockModal() {
@@ -1524,6 +1548,7 @@
       document.getElementById('articleBlockTextInput').value = '';
       document.getElementById('articleBlockUrlInput').value = '';
       document.getElementById('articleBlockTypeSelect').value = 'banner';
+      renderAccordionPagesCheckboxes([]);
       toggleArticleBlockFields();
       document.getElementById('articleBlockModal').classList.add('active');
     }
@@ -1539,6 +1564,8 @@
       document.getElementById('articleBlockTitleInput').value = b.title || '';
       document.getElementById('articleBlockTextInput').value = b.text || (b.items ? b.items.join('\n') : '');
       document.getElementById('articleBlockUrlInput').value = b.url || '';
+      
+      renderAccordionPagesCheckboxes(b.attachedPages || []);
       toggleArticleBlockFields();
       document.getElementById('articleBlockModal').classList.add('active');
     }
@@ -1560,8 +1587,13 @@
       page.blocks = page.blocks || [];
 
       const newBlock = { type, title, text, url };
+
       if (type === 'checklist') {
         newBlock.items = text.split('\n').filter(x => x.trim());
+      } else if (type === 'accordion') {
+        const checkedPages = [];
+        document.querySelectorAll('.acc-page-chk:checked').forEach(c => checkedPages.push(c.value));
+        newBlock.attachedPages = checkedPages;
       }
 
       if (idxStr !== '') {
@@ -1570,7 +1602,7 @@
         page.blocks.push(newBlock);
       }
 
-      syncToCloud('pages_v80', pagesList);
+      syncToCloud('pages_v90', pagesList);
       closeArticleBlockModal();
       renderPage(currentPageId);
     }
@@ -1580,7 +1612,7 @@
       if (!page) return;
       if (confirm('Удалить этот пункт?')) {
         page.blocks.splice(idx, 1);
-        syncToCloud('pages_v80', pagesList);
+        syncToCloud('pages_v90', pagesList);
         renderPage(currentPageId);
       }
     }
@@ -1649,7 +1681,7 @@
       rolePermissions[role][modId] = rolePermissions[role][modId] || { view: true, edit: false, del: false, admin: false };
       rolePermissions[role][modId][permType] = !rolePermissions[role][modId][permType];
 
-      syncToCloud('perms_v80', rolePermissions);
+      syncToCloud('perms_v90', rolePermissions);
       renderRolePermissionsMatrix();
     }
 
@@ -1677,7 +1709,7 @@
 
       if (!fullName || !username || !password || !email) return alert('Заполните все поля!');
       usersList.push({ id: 'u_' + Date.now(), fullName, email, username, password, role, roleName });
-      syncToCloud('users_v80', usersList);
+      syncToCloud('users_v90', usersList);
       document.getElementById('newUserModal').classList.remove('active');
       openUsersModal();
       alert('Сотрудник зарегистрирован!');
@@ -1686,7 +1718,7 @@
     function deleteUser(id) {
       if (confirm('Удалить сотрудника?')) {
         usersList = usersList.filter(u => u.id !== id);
-        syncToCloud('users_v80', usersList);
+        syncToCloud('users_v90', usersList);
         openUsersModal();
       }
     }
@@ -1709,10 +1741,10 @@
             dashCards = d.cards || dashCards;
             usersList = d.users || usersList;
             rolePermissions = d.perms || rolePermissions;
-            syncToCloud('pages_v80', pagesList);
-            syncToCloud('cards_v80', dashCards);
-            syncToCloud('users_v80', usersList);
-            syncToCloud('perms_v80', rolePermissions);
+            syncToCloud('pages_v90', pagesList);
+            syncToCloud('cards_v90', dashCards);
+            syncToCloud('users_v90', usersList);
+            syncToCloud('perms_v90', rolePermissions);
             location.reload();
           }
         } catch(err) { alert('Ошибка импорта'); }
